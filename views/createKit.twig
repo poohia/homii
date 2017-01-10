@@ -1,0 +1,39 @@
+{% extends "base/base.twig" %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/admin.css">
+    {% endblock stylesheets %}
+
+{% block body %}
+<div class="row">
+{% include "forms/logout.twig" %} 
+</div>
+<br /><br />
+<div class="row">
+    <div class="col-xs-6">{% include "forms/kit.twig" %}</div>
+    <div class="col-xs-6">
+        <h1>Les produits</h1>
+       {% for product in products %}
+       <div data-id="{{ product.id }}" class="product col-xs-3">
+           <h3>{{ product.name }}</h3>
+           <p>{{ product.description }}</p>
+       </div>
+       {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock body %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="/js/createKit.module.js" type="text/javascript" ></script> 
+    <script >
+        $(document).ready(function(){
+            createKit.init();
+        });
+    </script>
+{% endblock javascript %}
+

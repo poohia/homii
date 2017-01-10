@@ -1,0 +1,10 @@
+.product
+{
+    border: 1px solid black;
+    margin: 2px;   
+    cursor: pointer;
+}
+.product.active
+{
+    border: 3px solid green;
+}

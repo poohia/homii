@@ -1,0 +1,27 @@
+
+@media (min-width: 992px) and (max-width: 1199px) {  }
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.section-description p { padding: 0; }
+	.top-content { padding: 0px 0 80px 0; }
+	.navbar-nav>li {float: left; display: inline-block;}
+	.logo-left{ margin-top: 0;}
+	nav{ padding-top: 20px; margin-bottom: 20px; text-align: center;}
+	.logo{ display: none;}
+}
+
+@media (max-width: 767px) {
+	.section-description p { padding: 0; }
+	.top-content { padding: 0px 0 80px 0; }
+	.subscribe input.subscribe-email, .subscribe button { width: 100%; }
+	.top-content .text{padding-left: 15px}
+	.logo-left{margin-top: 0;}
+	.navbar-nav>li {float: left;display: inline-block;}
+	nav {padding-top: 20px;margin-bottom: 20px;text-align: center;}
+	.logo{display: none;}
+}
+
+@media (max-width: 415px) {
+	h1, h2 { font-size: 32px; }
+}
+

@@ -1,0 +1,18 @@
+{% extends "base/base.twig" %}
+
+{% block body %}
+<h1>Hello Admin</h1>
+
+{% include "forms/logout.twig" %} 
+
+<a href="/admin/create/kit" class="btn btn-primary">Créer un kit</a>
+
+
+
+{% endblock body %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="js/index.module.js" type="text/javascript" ></script> 
+{% endblock javascript %}
+
