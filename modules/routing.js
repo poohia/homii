@@ -18,7 +18,8 @@ require('./passport')(passport);
 
 var pageController = require("./../controllers/pages.controller")();
 var adminController = require("./../controllers/admin.controller")();
-
+var marketController = require("./../controllers/market.controller")();
+var cartController = require("./../controllers/cart.controller")();
 //--------------------------------------------------------------------------------/
 
 
@@ -74,7 +75,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 //------ Routing --------------------------/
 
-
+/** index **/
 router.get('/', pageController.index);
 router.post('/', pageController.saveNewsLetter);
 router.get('/dashboard', pageController.dashboard);
@@ -86,6 +87,17 @@ router.get('/admin/create/kit', adminController.createKit);
 router.post('/admin/create/kit', adminController.postCreateKit);
 router.get('/admin/create/product', adminController.functionCreateProduct);
 router.post('/admin/create/product', adminController.postCreateProduct);
+
+/** market **/
+router.get('/market', marketController.index);
+router.get('/market/show/kit/:id', marketController.showKit);
+router.get('/market/show/product/:id', marketController.showProduct);
+
+/** cart **/
+router.get('/cart/show', cartController.index );
+router.get('/cart/add/:id', cartController.addCart );
+router.get('/cart/remove/:id', cartController.removeCart);
+
 //------------------------------------------/
 
 

@@ -1,0 +1,26 @@
+{% extends "base/base.twig" %}
+
+{% block body %}
+<h1>Market</h1>
+
+{% for kit in kits %}
+<div  class="card col-md-3 col-xs-12">
+  <img src="{{kit.image}}" alt="{{ 'Image du '~kit.name|lower}}" >
+  <div class="card-container">
+    <h4><b>{{kit.name}}</b></h4>
+    <p>{{kit.description}}</p>
+  </div>
+  <div class="btn-group">
+      <a class="btn btn-primary" href="/market/show/kit/{{kit._id}}">Voir</a>
+   {% if isAdmin  == false %} <button class="btn btn-danger add-cart" data-href="/cart/add/{{kit._id}}">Ajouter panier</button> {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock body %}
+
+{% block javascript %}
+    {{ parent() }}
+    {#<script src="js/index.module.js" type="text/javascript" ></script> #}
+    <script src="/js/cart.module.js" type="text/javascript" ></script> 
+{% endblock javascript %}
+

@@ -113,7 +113,7 @@ module.exports = function(app){
 					name  :  req.body.kit_name,
 					description : req.body.kit_description,
 					products : arrayResult ,
-					image : '/images/kit/' + req.files.kit_file.name
+					image : '/images/kits/' + req.files.kit_file.name
 				});
                 newKit.save(callback);
 			},

@@ -43,6 +43,8 @@ var module_firewall = function(){
 		"parfeu":[
 		 // For add rule, put to begin into this json
 		 // {"url": {{ RegEx url }}, "role" : [ {"item" : role1}, {"item" : role2} ] }
+			{"url":"^/cart", "role": [ {"item" : anonymous}, {"item" : user}] },
+		    {"url":"^/market", "role": [ {"item" : anonymous}, {"item" : user},{"item" : admin}] },
 			{"url": "^/api/*", "role" : [ {"item" : anonymous}, {"item" : user},{"item" : admin} ] },
 		 	{"url":"^/signup/", "role" : [ {"item": anonymous} ] },
 		    {"url":"^/login/", "role" : [ {"item" : anonymous} ] },
@@ -51,9 +53,15 @@ var module_firewall = function(){
 		    {"url":"^/logout", "role": [ {"item" : user} ,{"item" : admin} ] },
 		    {"url":"^/", "role": [ {"item" : anonymous}, {"item" : user},{"item" : admin}] },
 		    
+		    
+		    
+		    
 		]
 	};
-     
+     function isAdmin(hRole)
+     {
+     	return (hRole === hash.generateHash("ADMIN"));
+     }
      function getStringRole(role)
      {
      	var i = 0 ;
@@ -68,6 +76,7 @@ var module_firewall = function(){
      		}
      	if(roleExist) return currRole  ; else return anonymous.name ;
      }
+     
      function isExist(role)
      {
      	var i = 0 ;
@@ -225,7 +234,8 @@ var module_firewall = function(){
 		getFirewall : getFirewall,
 		getStringRole : getStringRole,
 		getRoles : getRoles,
-		isExist : isExist
+		isExist : isExist,
+		isAdmin : isAdmin
 		
 	}
 }();
