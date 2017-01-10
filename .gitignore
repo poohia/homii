@@ -49,3 +49,5 @@ jspm_packages
 
 data
 mongod
+views/images/kit/*
+views/images/products/*

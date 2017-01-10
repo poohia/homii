@@ -84,6 +84,8 @@ router.get('/login', pageController.login);
 router.get('/admin',adminController.index);
 router.get('/admin/create/kit', adminController.createKit);
 router.post('/admin/create/kit', adminController.postCreateKit);
+router.get('/admin/create/product', adminController.functionCreateProduct);
+router.post('/admin/create/product', adminController.postCreateProduct);
 //------------------------------------------/
 
 

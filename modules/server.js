@@ -27,7 +27,7 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var flash = require('connect-flash');
 var helmet = require('helmet');
-
+var fileUpload = require('express-fileupload');
 
 var passport = require('passport');
 require('./passport')(passport);
@@ -145,6 +145,8 @@ module.exports = function(partitionjs) {
             // validate middlewar
             .use(validate.start)
 
+            .use(fileUpload())
+            
         //------------------ routings ----------------/
         //  .use('/yourrouting', routingfile)
         .use('/xhr', ajaxRouting)

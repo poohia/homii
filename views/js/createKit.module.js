@@ -6,7 +6,7 @@ var createKit = function(){
         div_products : $(".product"),
         form : $("#form_create_kit")
     }
-    var input = "<input type='hidden' id='__id__' value='__id__' name='product' /> "
+    var input = "<input type='hidden' id='__id__' value='__id__' name='product.__id__' /> "
     function clickOfProduct()
     {
         var $that = $(this);

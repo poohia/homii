@@ -22,6 +22,7 @@
     "express": "^4.14.0",
     "express-error-handler": "^1.1.0",
     "express-favicon": "^1.0.1",
+    "express-fileupload": "0.0.5",
     "express-log": "^1.0.1",
     "express-minify-html": "^0.4.1",
     "express-reverse": "^0.3.2",
