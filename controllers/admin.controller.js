@@ -16,6 +16,7 @@ require('mpromise');
 //--------------------------- ENTITIES ---------------------------------------------------------/
 var product = require('./../models/product');
 var kit = require('./../models/kit');
+var newsLetter = require('./../models/newsLetter');
 //----------------------------------------------------------------------------------------------/
 
 
@@ -28,6 +29,24 @@ module.exports = function(app){
 		res.render('admin',{'flashMessage' : req.flash("message")});
 	}
 
+	function fnewsLetter(req, res)
+	{
+		newsLetter.find({}, function(err, results){
+			res.render("admin/newsLetter", {
+			  "newsLetters" : results	
+			});
+		});
+	}
+	function removeNewsLetter(req, res)
+	{
+		newsLetter.findById(req.params.id, function(err, result)
+		{
+			result.remove(function(err, result){
+				res.redirect('/admin/news-letter');
+			})	;
+		});
+		
+	}
 
 	function createKit(req, res)
 	{
@@ -51,10 +70,38 @@ module.exports = function(app){
 	
 	}
 	
+	function listKit(req, res)
+	{
+		kit.find({}, (err, results) => {
+			res.render('admin/listKit',{
+				'kits' : results
+			})	;
+		});
+	}
+	
+	function removeKit(req, res)
+	{
+		kit.findById(req.params.id, function(err, result){
+			result.remove(function(err, result){
+			  res.redirect('/admin/kits')	;
+			});
+		});
+	}
+	
 	function functionCreateProduct(req, res)
 	{
 		res.render('createProduct');
 	}
+	
+	function listProduct(req, res)
+	{
+		product.find({}, (err, results) => {
+			res.render('admin/listProduct',{
+				'products' : results
+			})	;
+		});
+	}
+
 	
 	function postCreateProduct(req ,res)
 	{
@@ -82,7 +129,7 @@ module.exports = function(app){
 		
 		
 		function(err, results){
-			res.redirect('/admin');
+			res.redirect('/admin/products');
 		});
 	}
 	
@@ -131,7 +178,7 @@ module.exports = function(app){
 		
 		
 		function(err, results){
-			res.redirect('/admin');
+			res.redirect('/admin/kits');
 		});
 		
 	}
@@ -142,6 +189,11 @@ module.exports = function(app){
 		createKit : createKit,
 		postCreateKit : postCreateKit,
 		functionCreateProduct : functionCreateProduct,
-		postCreateProduct : postCreateProduct
+		postCreateProduct : postCreateProduct,
+		newsLetter : fnewsLetter,
+		removeNewsLetter : removeNewsLetter,
+		listKit : listKit,
+		removeKit : removeKit,
+		listProduct : listProduct
 	}
 }

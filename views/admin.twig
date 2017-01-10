@@ -1,13 +1,10 @@
-{% extends "base/base.twig" %}
+{% extends "admin/base.twig" %}
+
+{% block title_page %}
+ <h1> <i class="fa fa-home" aria-hidden="true"></i> Accueil </h1>
+{% endblock %}
 
 {% block body %}
-<h1>Hello Admin</h1>
-
-{% include "forms/logout.twig" %} 
-
-<a href="/admin/create/kit" class="btn btn-primary">Créer un kit</a>
-<a href="/admin/create/product" class="btn btn-primary">Créer un produit</a>
-
 
 
 {% endblock body %}

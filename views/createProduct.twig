@@ -1,13 +1,12 @@
-{% extends "base/base.twig" %}
-
-{% block stylesheets %}
-<link rel="stylesheet" href="/css/admin.css">
-{% endblock stylesheets %}
+{% extends "admin/base.twig" %}
 
 
+{% block title_page %}
+ <h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajout d'un produit </h1>
+{% endblock %}
+       
 {% block body %}
 
-<h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Ajout d'un produit </h1>
 <div class="row">
     {% include "forms/addProduct.twig" %}
     

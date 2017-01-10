@@ -1,0 +1,42 @@
+{% extends "admin/base.twig" %}
+
+
+
+{% block title_page %}
+ <h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> News Letter </h1>
+{% endblock %}
+       
+{% block body %}
+
+<div class="col-xs-12">
+{% if newsLetters|length < 10 %}<label>Nombre d'email trouvé : {{ newsLetters|length|default(0) }} </label> {% endif %}
+</div>
+<div class="col-xs-12 col-md-6">
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    {% for newsLetter in newsLetters %}
+        <tr>
+            <td>{{newsLetter.email}}</td>
+            <td><a href="/admin/news-letter/remove/{{ newsLetter._id}}" class="btn btn-danger">Supprimé</a></td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{% if newsLetters|length > 10 %}
+ <script>
+     $(document).ready(function(){
+             $('table').DataTable();
+     });
+ </script>
+ {% endif %}
+{% endblock %}

@@ -56,7 +56,11 @@ router.post('/login', function(req, res, next) {
 });
 
 router.post("/logout", function(req, res, next) {
-  console.log("i'm here");
+  req.logout();
+  res.clearCookie("user");
+  res.redirect('/');
+});
+router.get("/logout", function(req, res, next) {
   req.logout();
   res.clearCookie("user");
   res.redirect('/');
@@ -87,7 +91,11 @@ router.get('/admin/create/kit', adminController.createKit);
 router.post('/admin/create/kit', adminController.postCreateKit);
 router.get('/admin/create/product', adminController.functionCreateProduct);
 router.post('/admin/create/product', adminController.postCreateProduct);
-
+router.get('/admin/news-letter', adminController.newsLetter);
+router.get('/admin/news-letter/remove/:id', adminController.removeNewsLetter);
+router.get('/admin/kits', adminController.listKit);
+router.get('/admin/kit/remove/:id', adminController.removeKit);
+router.get('/admin/products', adminController.listProduct);
 /** market **/
 router.get('/market', marketController.index);
 router.get('/market/show/kit/:id', marketController.showKit);

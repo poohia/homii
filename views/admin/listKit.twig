@@ -1,0 +1,51 @@
+{% extends "admin/base.twig" %}
+
+
+
+{% block title_page %}
+<h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Liste des kits  </h1>
+{% endblock %}
+
+{% block body %}
+<div class="col-xs-12">
+{% if kits|length < 10 %}<label>Nombre de kit : {{ kits|length|default(0) }} </label> {% endif %}
+</div>
+<div class="col-xs-12 col-md-10">
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    {% for kit in kits %}
+        <tr>
+            <td><img src="{{kit.image}}" alt="{{kit.name}}"></td>
+            <td>{{kit.name}}</td>
+            <td>{{kit.price}}</td>
+            <td>{{kit.description}}</td>
+            <td>
+                <a href="/market/show/kit/{{ kit._id}}" class="btn btn-primary" target="_blank">Voir</a>
+                <a href="/admin/kit/remove/{{ kit._id }}" class="btn btn-danger">Supprimé</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock body %}
+
+{% block javascript %}
+{% if kits|length > 10 %}
+ <script>
+     $(document).ready(function(){
+             $('table').DataTable();
+     });
+ </script>
+ {% endif %}
+{% endblock javascript %}
+
