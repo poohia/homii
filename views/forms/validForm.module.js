@@ -5,7 +5,8 @@ var validForm = function(){
 		login : '#form_signin',
 		signup : '#form_signup',
 		logout : '#form_logout',
-		newsletter : '#form_news_letter'
+		newsletter : '#form_news_letter',
+		address : '#form_order_address'
 	}
 	
 	function logout()
@@ -122,7 +123,88 @@ var validForm = function(){
 	    
 	    return (isValid && isToken); 
 	}
-	
+	function address()
+	{
+		var isToken = token(this);
+	    var isValid = true;
+		
+		var items = {
+			$sexe : $("input[name='sexe']"),
+			$name : $("#name"),
+			$last_name : $("#last_name"),
+			$rue  : $("#rue"),
+			$code_postal : $("#code_postal"),
+			$vile : $("#ville"),
+			$pays : $("#pays")
+		};
+		if(validator.sexe(items.$sexe.val()))
+		{
+			$(">.form-error-message", items.$sexe.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$sexe.parent()).removeClass("hidden");
+			isValid = false;
+		}
+		
+		if(validator.no_Empty(items.$name.val()))
+		{
+			$(">.form-error-message", items.$name.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$name.parent()).removeClass("hidden");
+			isValid = false;
+		}
+		
+		if(validator.no_Empty(items.$last_name.val()))
+		{
+			$(">.form-error-message", items.$last_name.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$last_name.parent()).removeClass("hidden");
+			isValid = false;
+		}
+		if(validator.french_Code_Postal(items.$code_postal.val()))
+		{
+			$(">.form-error-message", items.$code_postal.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$code_postal.parent()).removeClass("hidden");
+			isValid = false;
+		}		
+		if(validator.no_Empty(items.$rue.val()))
+		{
+			$(">.form-error-message", items.$rue.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$rue.parent()).removeClass("hidden");
+			isValid = false;
+		}
+		if(validator.no_Empty(items.$vile.val()))
+		{
+			$(">.form-error-message", items.$vile.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$vile.parent()).removeClass("hidden");
+			isValid = false;
+		}
+		if(validator.no_Empty(items.$pays.val()))
+		{
+			$(">.form-error-message", items.$pays.parent()).addClass("hidden");
+		}
+		else
+		{
+			$(">.form-error-message", items.$pays.parent()).removeClass("hidden");
+			isValid = false;
+		}		
+		 return (isValid && isToken); 
+		
+	}
 	function token($form)
 	{
 		var $token = $("input[name='token']", $form);
@@ -139,6 +221,7 @@ var validForm = function(){
 		$(_forms.signup).on("submit",signup);
 		$(_forms.logout).on("submit",logout);
 		$(_forms.newsletter).on("submit", newsLetter);
+		$(_forms.address).on("submit", address);
 
 	}
 

@@ -20,6 +20,8 @@ var pageController = require("./../controllers/pages.controller")();
 var adminController = require("./../controllers/admin.controller")();
 var marketController = require("./../controllers/market.controller")();
 var cartController = require("./../controllers/cart.controller")();
+var orderController = require("./../controllers/orders.controller")();
+var paypalController = require("./../controllers/paypal.controller")();
 //--------------------------------------------------------------------------------/
 
 
@@ -96,6 +98,8 @@ router.get('/admin/news-letter/remove/:id', adminController.removeNewsLetter);
 router.get('/admin/kits', adminController.listKit);
 router.get('/admin/kit/remove/:id', adminController.removeKit);
 router.get('/admin/products', adminController.listProduct);
+
+
 /** market **/
 router.get('/market', marketController.index);
 router.get('/market/show/kit/:id', marketController.showKit);
@@ -106,6 +110,19 @@ router.get('/cart/show', cartController.index );
 router.get('/cart/add/:id', cartController.addCart );
 router.get('/cart/remove/:id', cartController.removeCart);
 
+/** order **/
+router.get('/order', orderController.index) ;
+router.get('/order/step/2', orderController.step2) ;
+router.post('/order/step/2', orderController.postStep2);
+router.get('/order/cancel', orderController.cancelOrder);
+router.get('/order/step/3/:id',orderController.step3);
+router.post('/order/step/3/:id' , orderController.postStep3);
+router.get('/order/payment/success', orderController.paySuccess);
+
+/** paypal **/
+router.post('/paypal/payment', paypalController.pay);
+router.get('/paypal/payment/success/:id', paypalController.paymentSuccess);
+router.get('/paypal/payment/fail/:id', paypalController.paymentFail);
 //------------------------------------------/
 
 

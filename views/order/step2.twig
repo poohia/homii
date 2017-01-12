@@ -1,0 +1,24 @@
+{% extends "base/base.twig" %}
+
+{% block body %}
+<div class="container">
+<div class="col-xs-12 col-md-offset-3" ><h1>ETAPE 2</h1></div>
+<div class="row"></div>
+    <div class="col-xs-12 col-md-6 col-md-offset-1">
+        {% include "forms/address.twig" %}
+    </div>
+</div>
+<div class="row">
+<a href="/order"> <i class="fa fa-arrow-left" aria-hidden="true"></i>  retourner à l'étape  1</a>
+<a class="btn btn-danger" href="/order/cancel">Annuler la commande</a>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+ {#  <script src="/js/cart.module.js" type="text/javascript" ></script> #}
+{% endblock javascript %}

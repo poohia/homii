@@ -54,7 +54,7 @@ var userSchema = Schema({
     
 });
 module.exports = mongoose.model('User', userSchema);
-
+/*
 userSchema.pre("save",function(next)
 {
    switch (this.local.sexe) {
@@ -68,4 +68,4 @@ userSchema.pre("save",function(next)
            break;
    }
    next();
-});
+});*/

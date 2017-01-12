@@ -1,0 +1,51 @@
+<form id="form_order_address" method="POST" action>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="sexe" id="" value="woman" >
+    Mme
+  </label>&nbsp;&nbsp;&nbsp;
+  <label>
+    <input type="radio" name="sexe" id="" value="man" >
+    M
+  </label>
+  <p class="form-error-message hidden">Vous devez choisir un sexe .</p>
+</div>
+
+  <div class="form-group">
+    {#<label for="exampleInputEmail1">Email address</label>#}
+    <input type="text" class="form-control" name="name" id="name" placeholder="Nom" required>
+    <p class="form-error-message hidden">Le nom ne peut être vide .</p>
+  </div>
+  <div class="form-group">
+    {#<label for="exampleInputPassword1">Password</label>#}
+    <input type="text" class="form-control" id="last_name" placeholder="Prenom" name="last_name" required>
+    <p class="form-error-message hidden">Le prenom ne peut être vide .</p>
+  </div>
+  <div class="form-group">
+    {#<label for="exampleInputPassword1">Password</label>#}
+    <input type="text" class="form-control" id="rue" placeholder="Rue" name="rue" required>
+    <p class="form-error-message hidden">La rue ne peut être vide .</p>
+  </div>
+  <div class="form-group">
+    {#<label for="exampleInputPassword1">Password</label>#}
+    <input type="text" class="form-control" id="code_postal" placeholder="Code postal" name="code_postal" required >
+    <p class="form-error-message hidden">Le code postal est incorrecte .</p>
+  </div>
+  <div class="form-group">
+    {#<label for="exampleInputPassword1">Password</label>#}
+    <input type="text" class="form-control" id="ville" placeholder="Ville" name="ville" required>
+    <p class="form-error-message hidden">La ville ne peut être vide .</p>
+  </div>
+  <div class="form-group">
+    {#<label for="exampleInputPassword1">Password</label>#}
+    <input type="text" class="form-control" id="pays" placeholder="Pays" name="pays" required>
+    <p class="form-error-message hidden">Le pays ne peut être vide .</p>
+  </div>
+  <textarea class="form-control" name="complement" rows="3" placeholder="Informations complémentaire"></textarea>
+<br />
+    <input type="hidden" name="token" />
+  <button type="submit" class="btn btn-default">OK</button>
+    
+</form>
+<br /><br />

@@ -17,7 +17,7 @@ var validator = function(){
 	var _sexe_woman = "woman";
 	var _zip_file = new RegExp('.*\.zip$');
 	var _readme_file = new RegExp(/^.*\b(readme|README)\b.*$/);
-	
+	var _french_code_postal = new RegExp( "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$");
 	function password(password)
 	{
 		return _password.test(password) ; 	
@@ -47,14 +47,20 @@ var validator = function(){
 	{
 		return _readme_file.test(readmeFile);
 	}
+	function french_Code_Postal(codePostal)
+	{
+		return _french_code_postal.test(codePostal);
+	}
 	return {
+		french_Code_Postal : french_Code_Postal,
 		password: password,
 		email: email,
 		no_Empty : no_Empty,
 		only_Number : only_Number,
 		sexe : sexe,
 		zip : zip,
-		readme : readme
+		readme : readme,
+		
 	}
 }();
 

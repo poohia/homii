@@ -18,9 +18,16 @@ module.exports = function(app){
 	
 	function index(req ,res)
 	{
-	    kit.find({}, (err, results) => {
+		if(req.session.redirect)
+        {
+            res.redirect(req.session.redirect);
+        }else
+        {
+        	kit.find({}, (err, results) => {
 	        res.render('market', {'kits' : results, 'isAdmin' : firewall.isAdmin(req.user.local.role)});
-	    })
+	    });
+        }
+	    
 	    
 	}
 	

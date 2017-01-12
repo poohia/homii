@@ -26,6 +26,7 @@ var module_validate = function(){
  	
  	function getValid(req, res, next)
  	{
+
  		var isValid = true ; 
  		var body = req.body;
  		
@@ -51,6 +52,28 @@ var module_validate = function(){
  		{
  			(validator.sexe(body.sexe))? '' : isValid = false ;
  		}
+		
+		if(body.last_name !== undefined)
+		{
+			(validator.no_Empty(body.last_name))? '' : isValid = false ;
+		}
+		if(body.rue !== undefined)
+		{
+			(validator.no_Empty(body.rue))? '' : isValid = false ;
+		}
+		if(body.code_postal !== undefined)
+		{
+			(validator.french_Code_Postal(body.code_postal))? '' : isValid = false ;
+		}
+		if(body.ville !== undefined)
+		{
+			(validator.no_Empty(body.ville))? '' : isValid = false ;
+		}
+		if(body.pays !== undefined)
+		{
+			(validator.no_Empty(body.pays))? '' : isValid = false ;
+		}
+		
  		if(body.token !== undefined)
  		{
  			(!validator.no_Empty(body.token))? '' : isValid = false;
@@ -63,7 +86,16 @@ var module_validate = function(){
 		}
 		else
 		{
-			response.responseBadRequest(res);
+			console.log("incorrecte");
+			if(req.session.redirect)
+			{
+				res.status(400).redirect(req.session.redirect);
+			}
+			else
+			{
+				res.status(400).redirect('/');
+			}
+		//	response.responseBadRequest(res);
 		}
  	}
 

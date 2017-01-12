@@ -32,7 +32,7 @@ var module_firewall = function(){
 	'use strict';
  
 	var anonymous  = { "name" :  hash.generateHash("ANONYMOUS"),   "homeUrl" : "/" } ;
-	var user       = { "name" :    hash.generateHash('USER'),    "homeUrl" : "/dashboard" } ;
+	var user       = { "name" :    hash.generateHash('USER'),    "homeUrl" : "/" } ;
 	var admin      = { "name" :    hash.generateHash("ADMIN"),   "homeUrl" : "/admin" } ;
 
 	// list of roles
@@ -43,6 +43,8 @@ var module_firewall = function(){
 		"parfeu":[
 		 // For add rule, put to begin into this json
 		 // {"url": {{ RegEx url }}, "role" : [ {"item" : role1}, {"item" : role2} ] }
+			{"url":"^/order/step/*", "role": [ {"item" : user}] },
+			{"url":"^/order", "role": [ {"item" : anonymous}, {"item" : user}] },
 			{"url":"^/cart", "role": [ {"item" : anonymous}, {"item" : user}] },
 		    {"url":"^/market", "role": [ {"item" : anonymous}, {"item" : user},{"item" : admin}] },
 			{"url": "^/api/*", "role" : [ {"item" : anonymous}, {"item" : user},{"item" : admin} ] },
@@ -61,6 +63,10 @@ var module_firewall = function(){
      function isAdmin(hRole)
      {
      	return (hRole === hash.generateHash("ADMIN"));
+     }
+     function isUser(hRole)
+     {
+     	return (hRole === hash.generateHash("USER"));
      }
      function getStringRole(role)
      {
@@ -235,7 +241,8 @@ var module_firewall = function(){
 		getStringRole : getStringRole,
 		getRoles : getRoles,
 		isExist : isExist,
-		isAdmin : isAdmin
+		isAdmin : isAdmin,
+		isUser : isUser
 		
 	}
 }();

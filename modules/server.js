@@ -39,6 +39,7 @@ require('./passport')(passport);
 var cookie = require("./../middlewars/cookie");
 var firewall = require("./../middlewars/firewall");
 var validate = require("./../middlewars/validate");
+var redirect = require("./../middlewars/redirect");
 //---------------------------------------------------------------------------------------------/
 
 //---------------------- ROUTINGS -------------------------------------------------------------/
@@ -138,6 +139,8 @@ module.exports = function(partitionjs) {
             .use(passport.session())
             // flash message
             .use(flash())
+            // redirect
+         //   .use(redirect.start)
             // cookie
             .use(cookie.start)
             // firewall 

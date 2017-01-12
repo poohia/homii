@@ -16,8 +16,19 @@ var Schema = mongoose.Schema;
 
 
 var orderSchema = Schema({
-    kits : [{type: Schema.Types.ObjectId, ref: 'Kit'}]
-    
+    price : Number,
+    step : Number,
+    user : {type: Schema.Types.ObjectId, ref: 'User'},
+    kits : [{type: Schema.Types.ObjectId, ref: 'Kit'}],
+    address: {
+        nom : String,
+        prenom: String,
+        rue : String,
+        code_postal: String,
+        pays : String,
+        complement: String
+    },
+    token : String
 });
 
 module.exports = mongoose.model('Order', orderSchema);

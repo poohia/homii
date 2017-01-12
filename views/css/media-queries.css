@@ -10,6 +10,8 @@
 	.logo{ display: none;}
 }
 
+
+/* iphone */
 @media (max-width: 767px) {
 	.section-description p { padding: 0; }
 	.top-content { padding: 0px 0 80px 0; }
@@ -18,10 +20,17 @@
 	.logo-left{margin-top: 0;}
 	.navbar-nav>li {float: left;display: inline-block;}
 	nav {padding-top: 20px;margin-bottom: 20px;text-align: center;}
-	.logo{display: none;}
+	.logo{float: right; padding: 10px;}
+	.banner-title h1 {width: 100%;}
+	video{min-height: auto;}
+	.header{padding: 0px 10px;}
+	.banner-title{margin-top:70px;}
+	#banner .sep{margin-top: 5px;margin-bottom: 5px;}
+	.banner-txt{width:100%;}
 }
 
 @media (max-width: 415px) {
 	h1, h2 { font-size: 32px; }
+
 }
 

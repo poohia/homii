@@ -6,6 +6,7 @@
 */
 
 //--------------------------- DEPENDENCYS -------------------------------------------------------/
+var paypal = require("./../modules/paypal")();
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
@@ -18,7 +19,15 @@ module.exports = function(app){
 	
 	function index(req, res)
 	{
-		res.render('index',{'flashMessage' : req.flash("message")});
+	    if(req.session.redirect)
+        {
+            res.redirect(req.session.redirect);
+        }
+        else
+        {
+		
+			res.render('index',{'flashMessage' : req.flash("message")});
+        }
 	}
 	function saveNewsLetter(req, res)
 	{

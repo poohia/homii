@@ -183,7 +183,6 @@ module.exports = function(app){
 		
 	}
 	
-	
 	return {
 		index : index,
 		createKit : createKit,

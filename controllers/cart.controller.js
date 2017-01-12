@@ -48,7 +48,7 @@ module.exports = function(app){
 	       }
 	       else
 	       {
-	           if(req.session.cart === undefined)
+	           if(req.session.cart === undefined )
             	    {
             	          req.session.cart = new Array();
             	          var produit = {

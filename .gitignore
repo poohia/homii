@@ -51,3 +51,4 @@ data
 mongod
 views/images/kit/*
 views/images/products/*
+views/videos/*

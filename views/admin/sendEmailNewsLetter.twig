@@ -1,0 +1,41 @@
+{% extends "admin/base.twig" %}
+
+
+    {% block tinymce %}
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      height: 500,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code textcolor'
+      ],
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor',
+      content_css: '//www.tinymce.com/css/codepen.min.css'
+    });
+          
+  </script>
+    {% endblock tinymce %}
+
+{% block title_page %}
+ <h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Envoi email</h1>
+{% endblock %}
+       
+{% block body %}
+
+<textarea style="height : 100%; width : 400px;"></textarea>
+
+{% endblock %}
+
+{% block javascript %}
+{% if newsLetters|length > 10 %}
+ <script>
+     $(document).ready(function(){
+             $('table').DataTable();
+     });
+ </script>
+ {% endif %}
+{% endblock %}
