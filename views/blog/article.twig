@@ -1,0 +1,37 @@
+{% extends "base/base_home.twig" %}
+
+   {% block meta_seo %}
+        <meta property="og:image" content="{{ article.image }}" />
+        <meta name="title" content="Homii Low tech - {{ article.titre_1 }}">
+    	<meta name="description" content="{{ article.preview }}" />
+    	<meta name="keywords" content="{{ article.keywords }}">
+   {% endblock %}
+
+    {% block title_page %}  {{ article.titre_1 }} {% endblock %}
+        
+    {% block stylesheet %}
+      {{ parent()}}
+        <link rel="stylesheet" href="/css/style_blog.css">
+    {% endblock stylesheet %}
+
+    {% block main %}
+    
+        <article>
+            <div class="row title-row" style="background: url('{{ article.image  }}') 0 100% #0d1417 no-repeat;">
+                <h1 class="white">{{ article.titre_1 }} </h1>
+            {% if article.titre_2 is defined %}  <h2 class="white">{{ article.titre_2 }}</h2> {% endif %}
+                <p>écrit par {{ article.author }}<br>le {{ article.created_date }}</p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        {{ article.contenu }}
+                    </div>
+                </div>
+
+            </div>
+        
+        
+        </article>
+    
+    {% endblock main %}

@@ -1,6 +1,6 @@
 {% extends "base/base.twig" %}
 
-{% block body %}
+{% block main  %}
 <h1>Market</h1>
 
 {% for kit in kits %}
@@ -18,7 +18,7 @@
 {% endfor %}
 
 <a href="/cart/show">Pannier</a>
-{% endblock body %}
+{% endblock main %}
 
 {% block javascript %}
     {{ parent() }}

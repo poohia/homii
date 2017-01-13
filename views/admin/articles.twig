@@ -1,0 +1,53 @@
+{% extends "admin/base.twig" %}
+
+
+
+{% block title_page %}
+<h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Liste des articles  </h1>
+{% endblock %}
+
+
+{% block body %}
+<div class="col-xs-12">
+{% if articles|length < 10 %}<label>Nombre d'articles : {{ articles|length|default(0) }} </label> {% endif %}
+</div>
+<div class="col-xs-12 col-md-10">
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre 1</th>
+            <th>Message de prévisualisation</th>
+            <th>Auteur</th>
+            <th>Nombre de vues</th>
+        </tr>
+    </thead>
+    {% for article in articles %}
+        <tr>
+            <td>{{article.titre_1}}</td>
+            <td>{{article.preview}}</td>
+            <td>{{article.author}}</td>
+            <td>{{article.vues}}</td>
+            <td>
+                <a href="/blog/{{ article.slug}}" class="btn btn-primary" target="_blank">Voir</a>
+                <a href="/admin/article/edit/{{article._id}}" class="btn btn-success">Modifier</a>
+                <a href="/admin/article/remove/{{ article._id}}" class="btn btn-danger">Supprimé</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock body %}
+
+{% block javascript %}
+{% if products|length > 10 %}
+ <script>
+     $(document).ready(function(){
+             $('table').DataTable();
+     });
+ </script>
+ {% endif %}
+{% endblock javascript %}
+

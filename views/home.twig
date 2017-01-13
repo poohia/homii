@@ -7,12 +7,12 @@
         <div class="banner-title">
             <h1><b class="banner-txt-down">Homii</b>, créateur de solutions innovantes <br>pour économier et consommer votre énergie.</h1>
             <div class="sep"></div>
-            <p class="banner-txt">Produisez votre énergie <br>grâce aux produits Homii!</p>
+            <p class="banner-txt">Produisez votre énergie <br>grâce aux produits Homii !</p>
             <p class="banner-txt-down">Comment ça marche ?</p>
             <a href="#description"><img alt="" src="images/down_click.png"></a>
         </div>
-        <video  autoplay loop>
-            <source src="videos/landing.mp4" type="video/mp4">
+        <video  autoplay loop muted>
+            <source src="videos/landing.mov">
             Votre navigateur ne supporte pas le tag video 
         </video>  
     </section>
@@ -34,7 +34,7 @@
                 <div class="col-lg-4 col-sm-6 text-center  kit">
                     <img class="img-responsive img-center" src="images/concept2.png" alt="">
                     <h3 class="low">Faites des économies sur vos factures</h3>
-                    <p>En optant pour nos technologies low tech, autonomes et hors réseaux</p>
+                    <p>En optant pour nos solutions autonomes en énergie</p>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center  kit">
                     <img class="img-responsive img-center" src="images/concept3.png" alt="">
@@ -52,16 +52,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-7 col-sm-offset-5 text">
-                        <h2 class="white">système d’éclairage autonome You got the power</h2>
+                        <h2 class="white">Create your own energy</h2> 
                         <div class="sep"></div>
-                        <h5>Create your own energy</h5>
                         <div class="description">
-                            <p><b>L’autoconsommation</b>est une pratique qui consiste à produire sa propre énergie, en partie ou en totalité. Encore peu développée en France, l’autocosommation est pourtant d’ores et déjà pratiquée.
-                            <br><b>Notre mission ? </b>Accompagner le plus grand nombre vers l’autonomie énergétique.<br><b> Les opportunités ?</b> Devenir 10%, 50% ou même 100% autosuffisant !</p>
-                            <div class="prog">
-                            <p><b>SELF-SUFFICENCY</b></p>
-                            <span>100%</span>
-                            <img src="images/scrollbar.png">
+                            <p><b>L’autoconsommation</b>est une pratique qui consiste à produire sa propre énergie, en partie ou en totalité. 
+                            <br><b>Notre mission ? </b>Accompagner le plus grand nombre vers l’autonomie énergétique.
+                            <br><b>Les opportunités ? </b>Devenir 10%, 50% ou même 100% autonome en énergie !</p>
+                        
                         </div>
                     </div>
                 </div>
@@ -78,8 +75,10 @@
                     <h2>L'offre homii</h2>
                     <hr class="sep"></hr>
                 </div>
-                <p>Nous travaillons actuellement sur le prototype du premier produit Homii.<br>
-                Pour faire partie de nos "testeurs" rejoignez le groupe facebook <a href="https://www.facebook.com/groups/homii.groupe/"><span class="banner-txt-down">Homii testeur</span></a></p>
+                <p> La borne Homii est une borne thermoélectrique basée sur l’effet Peltier. Elle capte l’énergie des sources de chaleur (à partir de 100 degrés)
+                pour la transformer en électricité. Munie d’une à 3 prises, elle alimente vos appareils électriques, qui contribuent à votre confort.<br>
+                <a href="#">Pour en savoir sur sur le produit, rendez-vous sur la fiche produit.</a><br>
+                <a href="#">Pour en savoir sur l’effet Peltier, rendez-vous ici.</a></p>
                 <!--<div class="col-lg-4 col-sm-6 text-center  kit">
                     <img class="img-responsive img-center" src="images/kit1.png" alt="">
                     <h3>Kit Conso</h3>
@@ -114,30 +113,16 @@
 
             <!-- Projects Row -->
             <div class="row">
+                {% for article in articles %}
                 <div class="col-md-4 portfolio-item">
-                    <a href="#">
-                        <img class="img-responsive" src="images/articles/art1.jpg" alt="">
+                    <a href="/blog/{{ article.slug}}">
+                        <img class="img-responsive" src="{{ article.image }}" alt="{{ article.titre_1}}">
                     </a>
-                    <h3>LOREM LOREM</h3>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
-                    <span>>Détails</span>
+                    <h3>{{ article.titre_1 }}</h3>
+                    <p>{{ article.preview }}</p>
+                    <a href="/blog/{{ article.slug}}">    <span>>Détails</span></a>
                 </div>
-                <div class="col-md-4 portfolio-item">
-                    <a href="#">
-                        <img class="img-responsive" src="images/articles/art2.jpg" alt="">
-                    </a>
-                    <h3>LOREM LOREM</h3>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. </p>
-                    <span>>Détails</span>
-                </div>
-                <div class="col-md-4 portfolio-item">
-                    <a href="#">
-                        <img class="img-responsive" src="images/articles/art3.jpg" alt="">
-                    </a>
-                    <h3>LOREM LOREM</h3>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                    <span>>Détails</span>
-                </div>
+                {% endfor %}
             </div>
             <!-- /.row -->
         </div>
@@ -180,7 +165,7 @@
 
     {% block javascript %}
      {{ parent() }}
-         <script src="/js/steps.js"></script>
+         
          <script>
         $('.carousel').carousel({
             interval: 5000 //changes the speed

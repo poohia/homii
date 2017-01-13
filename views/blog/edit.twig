@@ -1,0 +1,12 @@
+{% extends "blog/create.twig" %}
+
+{% block title_page %}<h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Modifier un article </h1> {% endblock %}
+
+{% block author_value %}{{ article.author }}{% endblock %}
+{% block titre_1_value %}{{ article.titre_1 }}{% endblock %}
+{% block titre_2_value %}{{ article.titre_2}}{% endblock %}
+{% block keywords_value %}{{ article.keywords }}{% endblock %}
+{% block preview_value %}{{ article.preview }}{% endblock %}
+{% block content_value %}{{article.contenu}}{% endblock %}
+
+{% block image_info %}<p>Si l'image est vide alors elle ne sera pas mis à jour</p>{% endblock %}

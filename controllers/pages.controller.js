@@ -11,6 +11,7 @@ var mailchimp = require("./../modules/mailchimp")();
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
 var newsLetter = require('./../models/newsLetter');
+var post       = require('./../models/post');
 //----------------------------------------------------------------------------------------------/
 
 
@@ -39,10 +40,13 @@ module.exports = function(app){
         }
         else
         {
-			res.render('home',{'flashMessage' : req.flash("message"),
+        	post.find().limit(3).exec({},function(err, results){
+        		res.render('home',{'flashMessage' : req.flash("message"),
 				'error' : req.query.error,
-				'valid' : req.query.valid
-			});
+				'valid' : req.query.valid,
+				'articles' : results
+				});
+        	});
         }
 	}
 	

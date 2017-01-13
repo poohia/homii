@@ -101,8 +101,10 @@ router.get('/admin/news-letter/remove/:id', adminController.removeNewsLetter);
 router.get('/admin/kits', adminController.listKit);
 router.get('/admin/kit/remove/:id', adminController.removeKit);
 router.get('/admin/products', adminController.listProduct);
-
-
+router.get('/admin/articles', blogController.articles);
+router.get('/admin/article/remove/:id', blogController.removeArticle);
+router.get('/admin/article/edit/:id', blogController.editArticle);
+router.post('/admin/article/edit/:id', blogController.postEditArticle);
 /** market **/
 router.get('/market', marketController.index);
 router.get('/market/show/kit/:id', marketController.showKit);
@@ -128,9 +130,11 @@ router.get('/paypal/payment/success/:id', paypalController.paymentSuccess);
 router.get('/paypal/payment/fail/:id', paypalController.paymentFail);
 
 /** blog **/
+router.get('/blog', blogController.index);
 router.get('/admin/blog/post/add', blogController.create);
 router.post('/admin/blog/post/add', blogController.postCreate);
 router.get('/blog/:slug', blogController.article);
+
 //------------------------------------------/
 
 

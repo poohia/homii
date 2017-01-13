@@ -8,7 +8,11 @@ html,
 body {
     height: 100%;
 }
-
+a, a:hover, a:active, a:focus
+{
+        text-decoration: none;
+        color: #5ddb42;
+}
 p{
     font-family: "Lato", sans-serif;
     font-size: 17px;
@@ -877,4 +881,9 @@ section#blog ul li {
 .scroll-nav-bot .navbar-nav>li>a
 {
 	color : #fff;
+}
+.portfolio-item img
+{
+    width : 569.984px;
+    height:  468.672px;
 }

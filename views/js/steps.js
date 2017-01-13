@@ -66,12 +66,11 @@ $(window).resize(function(){
 var a = $(".navbar-inverse").offset().top;
 
 $(document).scroll(function(){
-    if($(this).scrollTop() > a)
+    if($(this).scrollTop() > 0)
     {   
        $('.navbar-inverse').addClass('scroll-nav-bot');
        
     } else {
-		console.log("i'm here");
        $('.navbar-inverse').removeClass('scroll-nav-bot');
     }
 });

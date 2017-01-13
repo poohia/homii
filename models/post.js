@@ -12,6 +12,7 @@ var postSchema = mongoose.Schema({
     slug : String,
     titre_1 : String,
     titre_2 : String,
+    keywords : String,
     image : String,
     contenu : String,
     preview : String,

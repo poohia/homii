@@ -8,11 +8,11 @@
         {% block meta_seo %}
         <meta property="og:image" content="/images/favicon.png" />
         <meta name="title" content="Homii Low tech - Spécialiste de l'autonomie énergétique">
-    	<meta name="description" content="description de la page" />
+    	<meta name="description" content="Vous en avez assez de payer vos factures d'énergies ? Homii vous accompagne vers l'autoconsommation." />
     	<meta name="keywords" content="low tech, autonomie énergétique, énergies renouvelables, autoconsommation, homii, self-sufficiency, énergie verte, thermoélectricité, générateur, plug, énergie thermoélectrique">
         {% endblock meta_seo %}
     
-    {% block title %}    <title>Homii - Solutions écologiques pour produire votre énergie</title> {% endblock title %}
+     <title>Homii -  {% block title_page %}  Solutions écologiques pour produire votre énergie {% endblock  %}</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">

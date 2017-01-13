@@ -9,6 +9,11 @@ var post = require("./../models/post");
 module.exports = function(app){
 	'use strict';
 	
+	function index(req, res)
+	{
+		res.render("blog/index");
+	}
+	
 	function f404(req, res)
 	{
         res.status(404).render('404', {'url' : req.url});
@@ -24,6 +29,7 @@ module.exports = function(app){
 		var newPost = new post({
 		    titre_1 : req.body.title_1,
 		    titre_2 : req.body.title_2,
+		    keywords : req.body.keywords,
 		    contenu : req.body.content,
 		    preview : req.body.preview,
 		    author   : req.body.author,
@@ -48,12 +54,12 @@ module.exports = function(app){
 				else
 				{
 					post.find({ $not: { _id : result._id }}, '_id titre_1 image  preview').limit(4).exec( function(err , results){
-						console.log(results, "results");
+						res.render('blog/article', {
+							'article' : result,
+							'other_articles' : results
+						});
 					});
-					res.render('blog/article', {
-						'article' : result 
-					});
-					result.vue += 1;
+					result.vues += 1;
 					console.log(result, "vue++");
 					result.save();
 				}
@@ -65,10 +71,64 @@ module.exports = function(app){
 		}
 	}
 	
+	function articles(req, res)
+	{
+		post.find({}, function(err, results){
+			res.render('admin/articles', {
+				'articles' : results	
+			});
+		})
+	}
+	
+	function removeArticle(req, res)
+	{
+		post.findById(req.params.id, function(err, result){
+			result.remove();
+			res.redirect('/admin/articles');
+		});
+	}
+	
+	function editArticle(req, res)
+	{
+		post.findById(req.params.id, function(err, result){
+			res.render('blog/edit',
+			{
+				'article' : result	
+			});
+		});
+	}
+	function postEditArticle(req, res)
+	{
+		console.log(req.files);
+		console.log(req.body);
+		post.findById(req.params.id, function(err, result)
+		{
+				var name_file = req.files.post_image.name;
+				result.author = req.body.author;
+				result.titre_1 = req.body.title_1;
+				result.titre_2 = req.body.title_2;
+				result.keywords = req.body.keywords;
+				result.preview  = req.body.preview;
+				result.contenu   = req.body.content;
+				if( name_file !== '')
+				{
+					result.image = "/images/posts/" + name_file ;
+					req.files.post_image.mv('views/images/posts/' + name_file, function(err){
+					 });
+				}
+				result.save();
+				res.redirect('/admin/articles');
+		});
+	}
 	return {
 		f404 : f404,
 		create : create,
 		postCreate : postCreate,
-		article : article
+		article : article,
+		articles : articles,
+		removeArticle : removeArticle,
+		editArticle : editArticle,
+		postEditArticle : postEditArticle,
+		index : index
 	}
 }

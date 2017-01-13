@@ -26,34 +26,35 @@
 {% endblock %}
 
 {% block body %}
-<form method="POST" encType="multipart/form-data" action>
+<form method="POST" encType="multipart/form-data" action="{% block action %} {% endblock %}">
   <div class="form-group">
     <label for="author">Auteur :</label>
-    <input type="text" class="form-control" id="author" name="author">
+    <input type="text" class="form-control" id="author" name="author" value="{% block author_value %}{% endblock %}">
   </div>
   <div class="form-group">
     <label for="title_1">Titre 1 * :</label>
-    <input type="text" class="form-control" id="title_1" name="title_1">
+    <input type="text" class="form-control" id="title_1" name="title_1" value="{% block titre_1_value %}{% endblock %}">
   </div>
   <div class="form-group">
     <label for="title_2">Titre 2 :</label>
-    <input type="text" class="form-control" id="title_2" name="title_2">
+    <input type="text" class="form-control" id="title_2" name="title_2" value="{% block titre2_value %}{% endblock %}">
   </div>
   <div class="form-group">
     <label for="keywords">Mots clés :</label>
-    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="mot1,mot2,mot3">
+    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="mot1,mot2,mot3" value="{% block keywords_value %}{% endblock %}">
   </div>
   <div class="form-group">
     <label for="post_image">Image de l'article * :</label>
     <input type="file" id="post_image" name="post_image">
+    {% block image_info %}{% endblock %}
   </div>
   <div class="form-group">
     <label for="preview">Previsualisation du contenu * :</label>
-    <input type="text" class="form-control" id="preview" name="preview" >
+    <input type="text" class="form-control" id="preview" name="preview" value="{% block preview_value %}{% endblock %}">
   </div>
   <div class="form-group">
       <label for="content">Contenu * :</label> <br />
-      <textarea name="content"  style="height:750px; width: 100%;"></textarea>
+      <textarea name="content"  style="height:750px; width: 100%;">{% block content_value %}{% endblock %}</textarea>
       <a class="btn" href="javascript:;" onclick="tinymce.execCommand('mceToggleEditor',false,'content');"><span>Toggle TinyMCE</span></a>
   </div>
   <input type="hidden" name="token" />
