@@ -53,6 +53,7 @@ var module_firewall = function(){
 		    {"url":"^/admin", "role": [ {"item" : admin} ] },
 		    {"url":"^/dashboard", "role": [ {"item" : user} ] },
 		    {"url":"^/logout", "role": [ {"item" : user} ,{"item" : admin} ] },
+		    {"url":"^/blog", "role": [ {"item" : anonymous}, {"item" : user},{"item" : admin}] },
 		    {"url":"^/", "role": [ {"item" : anonymous}, {"item" : user},{"item" : admin}] },
 		    
 		    

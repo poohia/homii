@@ -6,7 +6,7 @@
 */
 
 //--------------------------- DEPENDENCYS -------------------------------------------------------/
-var paypal = require("./../modules/paypal")();
+var mailchimp = require("./../modules/mailchimp")();
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
@@ -19,23 +19,90 @@ module.exports = function(app){
 	
 	function index(req, res)
 	{
-	    if(req.session.redirect)
+		if(req.session.redirect)
         {
             res.redirect(req.session.redirect);
         }
         else
         {
-		
-			res.render('index',{'flashMessage' : req.flash("message")});
+			res.render('index',{'flashMessage' : req.flash("message"),
+				'error' : req.query.error,
+				'valid' : req.query.valid
+			});
         }
+	}
+	function home(req, res)
+	{
+		if(req.session.redirect)
+        {
+            res.redirect(req.session.redirect);
+        }
+        else
+        {
+			res.render('home',{'flashMessage' : req.flash("message"),
+				'error' : req.query.error,
+				'valid' : req.query.valid
+			});
+        }
+	}
+	
+	function saveNewsLetterHome(req, res)
+	{
+		if(req.body.email_newsletter && req.body.email_newsletter !== "")
+		{
+			console.log(req.body.email_newsletter);
+			newsLetter.find({'email' : req.body.email_newsletter},function(err, result)
+				{
+					if(result.length == 0)
+					{
+						var newNewsLetter = new newsLetter({
+							email : req.body.email_newsletter
+						});
+						newNewsLetter.save();
+                        mailchimp.addSubscriber(req.body.email_newsletter);
+						res.redirect('/home?valid=emailSaved#newsletter');
+					}
+					else
+					{
+							res.redirect('/home?error=emailExist#newsletter');
+					}
+				})
+			
+		}
+		else
+		{
+			res.redirect('/home?error=emailInvalide#newsletter');
+		}
+	
 	}
 	function saveNewsLetter(req, res)
 	{
-		var newNewsLetter = new newsLetter({
-			email : req.body.email
-		});
-		newNewsLetter.save();
-		res.redirect('/');
+		if(req.body.email_newsletter && req.body.email_newsletter !== "")
+		{
+			console.log(req.body.email_newsletter);
+			newsLetter.find({'email' : req.body.email_newsletter},function(err, result)
+				{
+					if(result.length == 0)
+					{
+						var newNewsLetter = new newsLetter({
+							email : req.body.email_newsletter
+						});
+						newNewsLetter.save();
+                        mailchimp.addSubscriber(req.body.email_newsletter);
+						res.redirect('/?valid=emailSaved#newsletter');
+					}
+					else
+					{
+							res.redirect('/?error=emailExist#newsletter');
+					}
+				})
+			
+		}
+		else
+		{
+			res.redirect('/?error=emailInvalide#newsletter');
+		}
+	
 	}
 	function dashboard(req, res)
 	{
@@ -59,6 +126,8 @@ module.exports = function(app){
 		f404 : f404,
 		dashboard : dashboard,
 		login : login,
-		saveNewsLetter: saveNewsLetter
+		saveNewsLetter: saveNewsLetter,
+		home : home,
+		saveNewsLetterHome : saveNewsLetterHome
 	}
 }

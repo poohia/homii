@@ -1,36 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Homii</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/media-queries.css">
-		
-        <!-- Favicon  -->
-        <link rel="shortcut icon" href="/images/favicon.png">
-
-        <script
-src="https://code.jquery.com/jquery-2.2.4.min.js"
-integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-crossorigin="anonymous"></script>
-
-    </head>
-    <body>
-    <div class="header">
-		<a class="logo" href="/">
-			<img src="/images/logo-w.png" height="100" alt="logo">
-		</a>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="https://www.facebook.com/homii.energie/" target="_blank"><img src="/images/fb-w.png" alt=""></a></li>
-			<li><a href="https://twitter.com/Homii_Energie" target="_blank"><img src="/images/tt-w.png" alt=""></a></li>
-		</ul>
-	</div>
+{% extends "base/base.twig" %}
+{% block main %}
     <section id="banner">
     	<div class="banner-title">
 			<h1>Marre de payer vos factures d'énergie ?</h1>
@@ -49,7 +18,7 @@ crossorigin="anonymous"></script>
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 ">
-					  		<button class="website">Rendez-vous sur notre site</button>
+					  <a href="/home">		<button class="website">Rendez-vous sur notre site</button> </a>
                     </div>
 	            </div>
 	        </div>
@@ -83,18 +52,5 @@ crossorigin="anonymous"></script>
             </div>
         </div>
 	</section>
-	<footer>
-		<a class="logo" href="/">
-			<img src="/images/logo.png" height="100" alt="logo">
-		</a>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="https://www.facebook.com/homii.energie/" target="_blank"><img src="/images/fb.png" alt=""></a></li>
-			<li><a href="https://twitter.com/Homii_Energie" target="_blank"><img src="/images/tt.png" alt=""></a></li>
-		</ul>
-	</footer>
-        <!-- Javascript -->
-        {% include "google/analytic.twig" %}
-        <script src="/js/bootstrap.min.js"></script>
-
-    </body>
-</html>
+	
+{% endblock main %}

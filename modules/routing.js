@@ -22,6 +22,7 @@ var marketController = require("./../controllers/market.controller")();
 var cartController = require("./../controllers/cart.controller")();
 var orderController = require("./../controllers/orders.controller")();
 var paypalController = require("./../controllers/paypal.controller")();
+var blogController = require("./../controllers/blog.controller")();
 //--------------------------------------------------------------------------------/
 
 
@@ -83,7 +84,9 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 /** index **/
 router.get('/', pageController.index);
+router.get('/home', pageController.home);
 router.post('/', pageController.saveNewsLetter);
+router.post('/home', pageController.saveNewsLetterHome);
 router.get('/dashboard', pageController.dashboard);
 router.get('/login', pageController.login);
 
@@ -123,6 +126,11 @@ router.get('/order/payment/success', orderController.paySuccess);
 router.post('/paypal/payment', paypalController.pay);
 router.get('/paypal/payment/success/:id', paypalController.paymentSuccess);
 router.get('/paypal/payment/fail/:id', paypalController.paymentFail);
+
+/** blog **/
+router.get('/admin/blog/post/add', blogController.create);
+router.post('/admin/blog/post/add', blogController.postCreate);
+router.get('/blog/:slug', blogController.article);
 //------------------------------------------/
 
 

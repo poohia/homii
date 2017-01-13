@@ -1,0 +1,62 @@
+{% extends "admin/base.twig" %}
+
+
+{% block tinymce %}
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      height: 750,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code textcolor'
+      ],
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor',
+      content_css: '//www.tinymce.com/css/codepen.min.css'
+    });
+          
+  </script>
+{% endblock tinymce %}
+
+
+{% block title_page %}
+<h1> <i class="fa fa-plus-circle" aria-hidden="true"></i> Créer un article </h1>
+{% endblock %}
+
+{% block body %}
+<form method="POST" encType="multipart/form-data" action>
+  <div class="form-group">
+    <label for="author">Auteur :</label>
+    <input type="text" class="form-control" id="author" name="author">
+  </div>
+  <div class="form-group">
+    <label for="title_1">Titre 1 * :</label>
+    <input type="text" class="form-control" id="title_1" name="title_1">
+  </div>
+  <div class="form-group">
+    <label for="title_2">Titre 2 :</label>
+    <input type="text" class="form-control" id="title_2" name="title_2">
+  </div>
+  <div class="form-group">
+    <label for="keywords">Mots clés :</label>
+    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="mot1,mot2,mot3">
+  </div>
+  <div class="form-group">
+    <label for="post_image">Image de l'article * :</label>
+    <input type="file" id="post_image" name="post_image">
+  </div>
+  <div class="form-group">
+    <label for="preview">Previsualisation du contenu * :</label>
+    <input type="text" class="form-control" id="preview" name="preview" >
+  </div>
+  <div class="form-group">
+      <label for="content">Contenu * :</label> <br />
+      <textarea name="content"  style="height:750px; width: 100%;"></textarea>
+      <a class="btn" href="javascript:;" onclick="tinymce.execCommand('mceToggleEditor',false,'content');"><span>Toggle TinyMCE</span></a>
+  </div>
+  <input type="hidden" name="token" />
+  <button type="submit" class="btn btn-default">Enregistrer</button>
+</form>
+{% endblock %}

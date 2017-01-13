@@ -98,6 +98,7 @@ section#banner{
     position: absolute;
     width: 100%;
     padding:20px 20px;
+    z-index: 10;
 }
 
 
@@ -328,9 +329,9 @@ section#newsletter{
 }
 
 #description button.website {
-    background: #fff;
-    border: 1px solid #6bdd53;
-    background-color:  #6bdd53;
+    background: #fb7f2c;
+    border: 1px solid #fb7f2c;
+    background-color:  #fb7f2c3;
     color: #fff;
     width: 50%;
     margin: auto;
