@@ -98,7 +98,6 @@ section#banner{
     position: absolute;
     width: 100%;
     padding:20px 20px;
-    z-index: 10;
 }
 
 
@@ -131,14 +130,14 @@ nav{
 /***** Top content *****/
 
 
-.top-content .text { color: #fff; padding-left: 40px;}
+.top-content .text { color: black; padding-left: 40px;}
 
 
 
 .top-content .description { margin: 10px 0 20px 0; }
 .top-content .description p {  
     margin-bottom: 40px;
-    line-height: 1.6;letter-spacing: 1.7px; color: #fff;}
+    line-height: 1.6;letter-spacing: 1.7px; color: black;}
 .top-content .description a { color: #fff; border-bottom: 1px dotted #fff; }
 .top-content .description a:hover, .top-content .description a:focus { color: #fff; border: 0; }
 
@@ -299,7 +298,7 @@ section#banner{
     margin-right: auto;
     margin-bottom: 80px;
     width: 50%;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .banner-txt-down{
@@ -329,9 +328,9 @@ section#newsletter{
 }
 
 #description button.website {
-    background: #fb7f2c;
-    border: 1px solid #fb7f2c;
-    background-color:  #fb7f2c3;
+    background: #fff;
+    border: 1px solid #6bdd53;
+    background-color:  #6bdd53;
     color: #fff;
     width: 50%;
     margin: auto;

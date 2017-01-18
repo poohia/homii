@@ -111,7 +111,8 @@ module.exports = function(app){
 				var tmpProduct = new product({
 				   name : req.body.product_name,
 				   description : req.body.product_description,
-				   image : '/images/products/' + req.files.product_file.name
+				   image : '/images/products/' + req.files.product_file.name,
+				   price : req.body.product_price
 				});
 				tmpProduct.save(callback);
 			},

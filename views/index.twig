@@ -2,12 +2,12 @@
 {% block main %}
     <section id="banner">
     	<div class="banner-title">
-			<h1>Marre de payer vos factures d'énergie ?</h1>
+			<h1>Transformez votre chaleur en énergie </h1>
 			<div class="sep"></div>
-	  		<p class="banner-txt">Homii vous propose des solutions écologiques pour produire votre énergie à la maison.</p>
+	  		<p class="banner-txt">La borne thermoélectrique Homii est une innovation qui permet de capter la chaleur pour la transformer en électricité.</p>
 	  		
 	  	</div>
-    	<video  autoplay loop>
+    	<video  autoplay loop muted>
 		     <source src="videos/landing.mov">
 			Your browser does not support the video tag.
 		</video>
@@ -18,7 +18,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 ">
-					  <a href="/home">		<button class="website">Rendez-vous sur notre site</button> </a>
+					  <a href="/home">		<button class="website">Découvrir la borne Homii</button> </a>
                     </div>
 	            </div>
 	        </div>
@@ -28,19 +28,24 @@
         <div class="top-content">
         	<div class="container">
 				<div class="row">
-					<div class="col-sm-5 text">
-						<div class="logo-left">
+					<div class="col-sm-6 text">&nbsp;
+						{#<div class="logo-left">
 							<img src="/images/logo.png" alt="" width="150">
-						</div>
+						</div>#}
 					</div>
-					<div class="col-sm-7 text">
-						<h3 class="white">Suivez-nous</h3>
+					<div class="col-sm-6 text">
+						<img src="/images/logo.png" alt="" width="150">
+						<div class="">&nbsp;</div>
+						<h3 class="">Suivez-nous</h3>
 						<div class="sep"></div>
 						<div class="description wow fadeInLeftBig">
 							<p>
-								La mission de Homii ? <br>Démocratiser des solutions alternatives pour <br>consommer son énergie autrement.<br>Devenir autonome en énergie, c'est possible et nous <br> comptons bien vous le prouver !
+								Homii est une innovation de pointe validée par des experts.<br> 
+								Notre prototype est prêt à l’emploi ! Nos ingénieurs travaillent chaque jour à optimiser ses fonctionnalités. <br>
+								Envie de suivre l’aventure ?
+
 							</p>
-							<h3 class="white low">Abonnez-vous à notre newsletter !</h3>
+							<h3 class=" low">Abonnez-vous à notre newsletter !</h3>
 						</div>
 						<div class="subscribe wow fadeInUp">
                			{% include "forms/newsLetter.twig"  %}

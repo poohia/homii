@@ -16,8 +16,8 @@
 
     {% block main %}
     
-        <article>
-            <div class="row title-row" style="background: url('{{ article.image  }}') 0 100% #0d1417 no-repeat;">
+        <article id="">
+            <div class="row title-row" style="background: url('{{ article.image  }}') 0 100% #0d1417 no-repeat;background-size: cover;">
                 <h1 class="white">{{ article.titre_1 }} </h1>
             {% if article.titre_2 is defined %}  <h2 class="white">{{ article.titre_2 }}</h2> {% endif %}
                 <p>écrit par {{ article.author }}<br>le {{ article.created_date }}</p>

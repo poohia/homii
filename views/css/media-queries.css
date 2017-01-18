@@ -1,4 +1,16 @@
 
+
+
+@media (min-width: 1199px)
+{
+	/*.portfolio-item img
+	{
+	    width : 569.984px;
+	    height:  468.672px;
+	}*/
+}
+
+
 @media (min-width: 992px) and (max-width: 1199px) {  }
 
 @media (min-width: 768px) and (max-width: 991px) {

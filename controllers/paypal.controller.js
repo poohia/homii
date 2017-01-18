@@ -7,7 +7,7 @@ const util = require('util')
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
 var order = require("./../models/order");
-var kit = require("./../models/kit");
+var kit = require("./../models/product");
 //----------------------------------------------------------------------------------------------/
 
 
@@ -47,13 +47,13 @@ module.exports = function(app){
             	}
             	else
             	{
-            	   res.status(403).redirect('/');
+            	   res.status(403).redirect('/home');
             	}
 	        });
 	    }
 	    else
 	    {
-	        res.status(403).redirect('/');
+	        res.status(403).redirect('/home');
 	    }
 	}
 	
@@ -114,10 +114,17 @@ module.exports = function(app){
 		req.session.redirect = null ;
 		req.session.cart = undefined ;
 		order.findOne({ 'token' : req.params.id }, function(err, result){		
-		  result.token = '' ;
-		  result.step = 3 ;
-		  result.save();
-		  res.render('paySuccess');
+		 if(result)
+		 {
+			  result.token = '' ;
+			  result.step = 3 ;
+			  result.save();
+			  res.render('paySuccess');
+		 }
+		 else
+		 {
+		 	res.redirect('/');
+		 }
 		});
 	}
 	

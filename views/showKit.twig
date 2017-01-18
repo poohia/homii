@@ -1,6 +1,6 @@
 {% extends "base/base.twig" %}
 
-{% block body %}
+{% block main %}
 <h1>{{ data.kit.name }}</h1>
  {% if isAdmin  == false %} <button class="btn btn-danger add-cart" data-href="/cart/add/{{data.kit._id}}">Ajouter panier</button> {% endif %}
   <img src="{{data.kit.image}}" alt="{{ 'Image du '~data.kit.name|lower}}" >
@@ -23,7 +23,7 @@
     </tbody>
 </table>
 {{ req.user }}
-{% endblock body %}
+{% endblock main %}
 
 {% block javascript %}
     {{ parent() }}

@@ -4,7 +4,7 @@ var firewall = require("./../middlewars/firewall").firewall();
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
-var kit = require("./../models/kit");
+var kit = require("./../models/product");
 var order = require("./../models/order");
 //----------------------------------------------------------------------------------------------/
 
@@ -104,9 +104,11 @@ module.exports = function(app){
 			// calcul le prix
 			function(callback)
 			{
+				
 				async.map(req.session.cart, function(spool, done){
 				  kit.findById(spool.id, function(err, result){
-				  	tmpOrder.price +=  parseInt(result.price) ;
+				  	for(var i = 0 ; i < spool.count ; i++)
+				  		tmpOrder.price +=  parseInt(result.price) ;
 				  	done(err, result);
 				  });	
 				},callback);
@@ -136,7 +138,7 @@ module.exports = function(app){
 				else
 				{
                    req.session.redirect = null;
-			       res.status(403).redirect('/');
+			       res.status(403).redirect('/home');
 				}
 		});
 	}
@@ -152,7 +154,7 @@ module.exports = function(app){
 	 	else
 	 	{
 	 		req.session.redirect = null;
-			res.status(403).redirect('/');
+			res.status(403).redirect('/home');
 	 	}
 	 })
 	 };

@@ -1,4 +1,9 @@
-{% extends "base/base.twig" %}
+{% extends "base/base_home.twig" %}
+
+    
+{% block header %}
+    	{% include "base/home_header_black.twig" %}
+{% endblock %}
 
 {% block main %}
 <section>
@@ -10,11 +15,13 @@
     <h3>Sign In</h3>
     {% include "forms/signin.twig" %}
 </div>
+
+{#
 <div class="col signup">
     <h3>Sign Up</h3>
     {% include "forms/signup.twig" %}
 </div>
-
+#}
 
 <div class="col">
 </p><sup>1 : Minimum 6 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number.  </sup>  
@@ -23,7 +30,5 @@
 {% endblock main %}
 
 {% block javascript %}
-    {{ parent() }}
-    <script src="js/index.module.js" type="text/javascript" ></script> 
 {% endblock javascript %}
 

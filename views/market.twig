@@ -1,4 +1,6 @@
-{% extends "base/base.twig" %}
+{% extends "base/base_home.twig" %}
+
+{% block header_class %} scroll-nav-bot {% endblock %}
 
 {% block main  %}
 <h1>Market</h1>
@@ -11,7 +13,7 @@
     <p>{{kit.description}}</p>
   </div>
   <div class="btn-group">
-      <a class="btn btn-primary" href="/market/show/kit/{{kit._id}}">Voir</a>
+      <a class="btn btn-primary" href="/market/show/product/{{kit._id}}">Voir</a>
    {% if isAdmin  == false %} <button class="btn btn-danger add-cart" data-href="/cart/add/{{kit._id}}">Ajouter panier</button> {% endif %}
   </div>
 </div>

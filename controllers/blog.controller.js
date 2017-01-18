@@ -1,4 +1,5 @@
 //--------------------------- DEPENDENCYS -------------------------------------------------------/
+var async = require('async');
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
@@ -11,7 +12,33 @@ module.exports = function(app){
 	
 	function index(req, res)
 	{
-		res.render("blog/index");
+		async.parallel([
+			function(callback)
+			{
+				post.find({}, function(err, result){
+					var data = new Object();
+					data.recentPost = result;
+					callback(err, data);
+				});
+			},
+			function(callback)
+			{
+				post.find({}).sort('vues').exec(function(err, result){
+					var data = new Object();
+					data.vuePost = result ;
+					callback(err, data);
+				})
+			}
+			], 
+		
+		function (err, result)
+		{
+			res.render("blog/index", {
+			 'recentPosts' :	result[0].recentPost,
+			 'vuePosts'    : result[1].vuePost
+			});
+		});
+		
 	}
 	
 	function f404(req, res)
@@ -60,7 +87,6 @@ module.exports = function(app){
 						});
 					});
 					result.vues += 1;
-					console.log(result, "vue++");
 					result.save();
 				}
 			});
@@ -99,8 +125,6 @@ module.exports = function(app){
 	}
 	function postEditArticle(req, res)
 	{
-		console.log(req.files);
-		console.log(req.body);
 		post.findById(req.params.id, function(err, result)
 		{
 				var name_file = req.files.post_image.name;

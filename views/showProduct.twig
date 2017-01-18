@@ -1,7 +1,11 @@
-{% extends "base/base.twig" %}
+{% extends "base/base_home.twig" %}
 
-{% block body %}
+
+{% block header_class %} scroll-nav-bot {% endblock %}
+
+{% block main %}
 <h1>{{data.name}}</h1>
+{{ data.price }} EUROS
 <img src="{{data.image}}" alt="{{data.name}}">
 <p>{{data.description}}</p>
 {% endblock %}
