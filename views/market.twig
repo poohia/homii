@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-sm-5 col-offre desc-price">
                     <p class="from">à partir de <span class="price-from">99€</span></p>
-                    <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button>
+               {% if isAdmin == false %}     <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button> {% endif %}
                 </div>
             </div>
             <div class="row">
@@ -59,7 +59,7 @@
                         </select>#}
                         
                         <br>
-                        <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                      {% if isAdmin == false %}  <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button> {% endif %}
                         </div>
                       {% endif %}
                       {% endfor %}
@@ -87,7 +87,7 @@
                                 <option value="3">3</option>
                             </select>#}
                             <br>
-                             <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                          {% if isAdmin == false %}   <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button> {% endif %}
                         </div>
                       {% endif %}
                       {% endfor %}
@@ -115,7 +115,7 @@
                       {% if product.product_type == 3 %}
                        <h6>{{product.name}}</h6>
                        <h3>{{ product.price }} €</h3>
-                       <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                {% if isAdmin == false %}       <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button> {% endif %}
                       {% endif %}
                       {% endfor %}
 
@@ -165,13 +165,13 @@
                     <img class="img-responsive img-center img-one" src="images/fiche-kit/bornes.png" alt="">
                     <h6>La Borne Homii <br>THERMOÉLECTRIQUE</h6>
                     <h3><span>à partir de </span>99 €</h3>
-                    <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button>
+                  {% if isAdmin == false %}  <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button> {% endif %}
                 </div>
                 <div class="col-sm-6 col-offre other-pro">
                     <img class="img-responsive img-center img-plug" src="images/fiche-kit/plug1.png" alt="">
                     <h6>Le stick Homii</h6>
                     <h3>49 €</h3>
-                    <button class="btn-green add-cart" data-href="/cart/add/5884c602fa5ea210d6665ff5">Acheter</button>
+                 {% if isAdmin == false %}   <button class="btn-green add-cart" data-href="/cart/add/5884c602fa5ea210d6665ff5">Acheter</button> {% endif %}
                 </div>
             </div>
         </div>

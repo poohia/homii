@@ -1,0 +1,105 @@
+@font-face {
+    font-family: "lato";
+    src: url(../font/Lato2OFL/Lato-Light.ttf);
+}
+
+
+#contact .list {
+    display: none;
+}
+#contact .list.show {
+    display: block;
+}
+
+#contact {
+    min-height: 90vh;
+    font-family: "lato";
+    padding: 0;
+}
+
+#contact .container {
+    width: 100%;
+}
+#contact .row.row-green {
+    background-color: #56bf41;
+        padding: 100px 0;
+}
+
+#contact .cercle {
+    display: block;
+    width: 180px;
+    height: 180px;
+    margin: 80px auto;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 180px;
+    color: #fff;
+    background-color: #c0c0c0;
+    cursor: pointer;
+}
+
+#contact h2 {
+    color: #ffffff;
+}
+
+#contact hr.sep {
+    border: 4px solid #ffffff;
+}
+
+#contact .cercle.active {
+    background-color: #56bf41;
+    color: #fff;
+}
+
+#contact .mail input, #contact .mail textarea {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 50px;
+    color: #888;
+    outline: 0; background: #fff; border: 2px solid #56bf41;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    resize:none;
+}
+
+#contact button.send {
+    border-radius: 0;
+    background: #56bf41;
+}
+
+#contact select {
+    font-size: 16px;
+    height: 50px;
+    color: #50464B;
+    background-color: #FFF;
+    border-radius: 4px;
+    border: 1px solid rgba(146,141,144,0.3);
+    padding: 20px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#contact .listToogle {
+    display: none;
+    margin: 0 30px;
+    text-align: left;
+}
+
+#contact .linkToogle {
+    margin:30px;
+    color: #56bf41;
+    font-size: 18px;
+    font-weight: 900;
+    text-align: left;
+}
+
+#contact .linkToogle .glyphicon-menu-up, #contact .linkToogle .glyphicon-menu-down {
+    margin-left: 10px;
+    color: #579e38;
+    font-size: 15px;
+}

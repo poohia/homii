@@ -23,6 +23,7 @@ var cartController = require("./../controllers/cart.controller")();
 var orderController = require("./../controllers/orders.controller")();
 var paypalController = require("./../controllers/paypal.controller")();
 var blogController = require("./../controllers/blog.controller")();
+var contactAssistController = require("./../controllers/contact.controller")();
 //--------------------------------------------------------------------------------/
 
 
@@ -53,7 +54,7 @@ router.post('/login', function(req, res, next) {
           httpOnly: true
         }); // Expires in one month
       }
-      return res.redirect('/');
+      return res.redirect('/home');
     });
   })(req, res, next);
 });
@@ -61,19 +62,19 @@ router.post('/login', function(req, res, next) {
 router.post("/logout", function(req, res, next) {
   req.logout();
   res.clearCookie("user");
-  res.redirect('/');
+  res.redirect('/home');
 });
 router.get("/logout", function(req, res, next) {
   req.logout();
   res.clearCookie("user");
-  res.redirect('/');
+  res.redirect('/home');
 });
 
 
 // process the signup form
 router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/', // redirect to the secure profile section
-  failureRedirect: '/', // redirect back to the signup page if there is an error
+  successRedirect: '/home', // redirect to the secure profile section
+  failureRedirect: '/home', // redirect back to the signup page if there is an error
   failureFlash: true // allow flash messages
 }));
 //-------------------------------------------------/
@@ -137,6 +138,10 @@ router.get('/blog', blogController.index);
 router.get('/admin/blog/post/add', blogController.create);
 router.post('/admin/blog/post/add', blogController.postCreate);
 router.get('/blog/:slug', blogController.article);
+
+/** contact et assistance **/
+
+router.get('/contact-and-help', contactAssistController.index);
 
 //------------------------------------------/
 

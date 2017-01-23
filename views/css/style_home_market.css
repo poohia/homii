@@ -438,6 +438,8 @@ section#blog{
 }
 .panier{
     background-image: url(../images/panier-w.png);
+    position: relative;
+    cursor: pointer;
 }
 
 .compte{
@@ -1202,4 +1204,31 @@ section#kit-homii {
 {
     background-color: black;
     color: white;
+}
+
+div#compte-infos
+{
+    position: absolute;
+    top: 55px;
+    right: 12px;
+    background-color: white;
+    padding: 20px 34px;
+        border-radius: 10px;
+}
+div#compte-infos button.website
+{
+    width: 100%;
+}
+#compte-infos p
+{
+    color :black;
+}
+#compte-infos .website
+{
+            background: #fff;
+    border: 1px solid #6bdd53;
+    background-color: #6bdd53;
+    color: #fff;
+    margin: auto;
+    font-size: 18px;
 }

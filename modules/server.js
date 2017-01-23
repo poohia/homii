@@ -37,7 +37,10 @@ require('./passport')(passport);
 
 //----------------------- MIDDLEWARS ----------------------------------------------------------/
 var cookie = require("./../middlewars/cookie");
-var firewall = require("./../middlewars/firewall");
+var firewall = require("./../middlewars/firewall"),
+    module_firewall = require("./../middlewars/firewall").firewall()
+;
+
 var validate = require("./../middlewars/validate");
 var redirect = require("./../middlewars/redirect");
 //---------------------------------------------------------------------------------------------/
@@ -150,6 +153,14 @@ module.exports = function(partitionjs) {
 
             .use(fileUpload())
             
+            app.use(function (req, res, next) {
+               res.locals = {
+                 isUser  : module_firewall.isUser(req.user.local.role),
+                 isAdmin: module_firewall.isAdmin(req.user.local.role),
+                 localUser : req.user
+               };
+               next();
+            })
         //------------------ routings ----------------/
         //  .use('/yourrouting', routingfile)
         .use('/xhr', ajaxRouting)

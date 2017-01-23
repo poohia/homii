@@ -24,7 +24,7 @@ module.exports = function(app){
         {
         	product.find({}, (err, results) => {
 	        res.render('market', {'products' : results,
-	        'isAdmin' : firewall.isAdmin(req.user.local.role),
+	       // 'isAdmin' : firewall.isAdmin(req.user.local.role),
 	        'sessionCart' : (req.session.cart && req.session.cart.length > 0) 	
 	        	
 	        }

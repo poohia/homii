@@ -428,6 +428,8 @@ section#blog h2{
 
 .compte{
     background-image: url(../images/compte-w.png);
+    position: relative;
+    cursor: pointer;
 }
 
 .navbar-inverse{
@@ -965,3 +967,16 @@ main {
 flex: 1 0 auto;
 }
       
+div#compte-infos
+{
+    position: absolute;
+    top: 55px;
+    right: 12px;
+    background-color: white;
+    padding: 20px 34px;
+        border-radius: 10px;
+}
+div#compte-infos button.website
+{
+    width: 100%;
+}

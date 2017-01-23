@@ -1,17 +1,10 @@
-<form id="form_order_address_tunnel" method="POST" action>
+<form  method="POST" action>
     <div class="col-sm-4 col-sm-offset-4">
-    	<div class="radio">
-  <label>
-    <input type="radio" name="sexe" id="" value="woman" checked>
-    Madame
-  </label>&nbsp;&nbsp;&nbsp;
-  <label>
-    <input type="radio" name="sexe" id="" value="man" >
-    Monsieur
-  </label>
-  <p class="form-error-message hidden">Vous devez choisir un sexe .</p>
-</div>
-    	<input placeholder="nom" name="name" type="text" required>
+    	<input name="radiog_dark" id="madame" class="css-checkbox" type="radio">
+    	<label for="madame" class="css-label radGroup2">Madame</label>
+    	<input name="radiog_dark" id="monsieur" class="css-checkbox" type="radio">
+    	<label for="monsieur" class="css-label radGroup2">Monsieur</label>
+    	<input placeholder="nom" id="name" name="name" type="text" required>
     	<input placeholder="prénom" name="last_name" type="text" required>
     	<input placeholder="rue" type="text" name="rue" required>
     	<input placeholder="ville" name="ville" type="text" required>
@@ -19,6 +12,8 @@
     	<input placeholder="pays" type="text" name="pays" required>
     	<textarea placeholder="infos supplémentaires" name="complement"></textarea>
     	<input type="hidden" name="token" />
+    	<a href="/order/cancel" ><button type="button" class="btn send">Annuler</button></a>
     	<button type="submit" class="btn send">suivant</button>
+      
     </div>
 </form>

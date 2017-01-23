@@ -30,11 +30,24 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/market">Notre produit</a></li>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="#">Contact & Assistance</a></li>
+                    <li><a href="/contact-and-help">Contact & Assistance</a></li>
                 </ul>
                 <div class="nav-right">   
                     <a class="navbar-brand panier" href="/cart/show" id="cart-link"><span class="badge">{% if sessionCart == true %}1{% endif %}</span></a></a>
-                    <a class="navbar-brand compte" href="#"></a>
+                {% if isAdmin == true or isUser == true %}    <a class="navbar-brand compte" href="#" id="link-compte"></a>
+                
+                <div id="compte-infos" style="display: none;">
+                    <p>
+                         <label>Email : </label>   {{ localUser.local.email }}
+                     </p>
+                     <p>
+                         {% if isAdmin == true %} <a href="/admin"><button class="website">Admin</button></a> {% endif %}
+                       <a href="/logout"><button class="website">Déconnexion</button></a>
+                     </p>
+                    </ul>
+                </div>
+                
+                {% endif %}
                 </div>
             </div>
            <!-- <div class="col-lg-2 nav-right">

@@ -49,6 +49,12 @@ crossorigin="anonymous"></script>
     {% endblock %}
     
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/compte.module.js"></script>
+    <script>
+        $(document).ready(function(){
+           compte.init(); 
+        });
+    </script>
     {% block javascript %}
     
     {% endblock javascript %}

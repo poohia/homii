@@ -1,5 +1,8 @@
 <form action="/paypal/payment" method="POST" >
   <input type="hidden" name="order" value="{{order.id}}"/>
+   <a href="/order/cancel" ><button class="btn send" type="button">Annuler</button></a>
   <button type="submit" class="btn send"><i class="fa fa-cc-paypal" aria-hidden="true"></i> Payer via PayPal</button>
+ 
+    	
     
 </form>
