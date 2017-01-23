@@ -2,12 +2,12 @@
 var async = require("async");
 var paypal = require("./../modules/paypal")();
 var randtoken = require('rand-token');
-const util = require('util')
+const util = require('util');
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES ---------------------------------------------------------/
 var order = require("./../models/order");
-var kit = require("./../models/product");
+var product = require("./../models/product");
 //----------------------------------------------------------------------------------------------/
 
 
@@ -21,7 +21,6 @@ module.exports = function(app){
 	
 	function pay(req, res)
 	{
-	    console.log("i'm here");
 	    if(req.body.order)
 	    {
 	        order.findById(req.body.order, function(err, result){
@@ -31,16 +30,17 @@ module.exports = function(app){
             	    result.save();
             	    paypal.connect(function(){
             	    createDataForPaypal(result, (objectPaypal) => {
-            	       /* objectPaypal.redirect_urls = new Object();
+            	    	objectPaypal.redirect_urls = new Object() ;
             	        objectPaypal.redirect_urls.return_url = "https://homii-jordanazoulay.c9users.io/paypal/payment/sucess/" + result.token;
             	        objectPaypal.redirect_urls.cancel_url = "https://homii-jordanazoulay.c9users.io/paypal/payment/fail/" + result.token;
-            	        
-            	        console.log(util.inspect(objectPaypal, {showHidden: false, depth: null}));*/
-            	        paypal.payTmp("https://homii-jordanazoulay.c9users.io/paypal/payment/success/" + result.token,
+            	        paypal.payTmp2(objectPaypal, objectPaypal.redirect_urls.cancel_url, (url) => {
+            	        		res.redirect(url);
+            	        });
+            	    /*    paypal.payTmp("https://homii-jordanazoulay.c9users.io/paypal/payment/success/" + result.token,
             	        "https://homii-jordanazoulay.c9users.io/paypal/payment/fail/" + result.token,
             	        (url) => {
             	        	res.redirect(url);
-            	        });
+            	        });*/
             	    });
             	    });
             	    
@@ -66,16 +66,22 @@ module.exports = function(app){
 	    var t = new Object();
 	
 	    t.amount = new Object();
-	    t.amount.total = price + ((price * tax.value) / 100 );
+	    t.amount.total = price + (tax.value * order.kits.length);
 	    t.amount.currency = "EUR";
 	    
 	    t.amount.details = new Object();
 	    t.amount.details.subtotal = order.price;
-	    t.amount.details.tax = tax.string;
-	    t.amount.details.shipping = "0";
-	    t.amount.details.handling_fee = "0";
-	    t.amount.details.shipping_discount = "0";
-	    t.amount.insurance = "0";
+	    t.amount.details.tax = tax.value * order.kits.length;
+	    
+	    t.description = "This is the payment transaction description.";
+	    t.custom = "EBAY_EMS_90048630024435";
+	    t.invoice_number= "48787589673";
+	    
+	   t.payment_options = new Object();
+	   t.payment_options.allowed_payment_method = "INSTANT_FUNDING_SOURCE";
+	   
+	   t.soft_descriptor = "ECHI5786786";
+	    
 	    data.transactions.push(t);
 	    
 	    var t2 = new Object();
@@ -83,12 +89,24 @@ module.exports = function(app){
 	    t2.item_list.items = new Array();
 	    
 	    async.map(order.kits, function(spool, done){
-	        kit.findById(spool, function(err, result){
+	        product.findById(spool, function(err, result){
 	            var item = new Object();
 	            item.name = result.name;
-	            item.description = result.description;
+	            if(result.product_type == 1 )
+	            {
+	            	item.description = "BORNE HOMII";
+	            }else if(result.product_type == 2 )
+	            {
+	            	item.description = "STICK POUR BORNE HOMII";
+	            }else if(result.product_type == 3)
+	            {
+	            	item.description = "Frontier Stove Anevay";
+	            }
+	            
 	            item.quantity = "1";
 	            item.price = result.price;
+	            item.tax = tax.string;
+	            item.sku = "1";
 	            item.currency = "EUR";
 	            t2.item_list.items.push(item);
 	            done();
@@ -106,7 +124,24 @@ module.exports = function(app){
 	
 	function paymentFail(req, res)
 	{
-		res.render('paymentFail');
+		req.session.redirect = null ;
+		req.session.cart = undefined ;
+		order.findOne({ 'token' : req.params.id }, function(err, result){		
+		 if(result)
+		 {
+			  result.token = '' ;
+			  result.step = 3 ;
+			  result.save();
+			  res.render('tunnel/paymentFail',
+			  {
+			  	'step' : 3
+			  });
+		 }
+		 else
+		 {
+		 	res.redirect('/');
+		 }
+		});
 	}
 	
 	function paymentSuccess(req, res)
@@ -119,7 +154,10 @@ module.exports = function(app){
 			  result.token = '' ;
 			  result.step = 3 ;
 			  result.save();
-			  res.render('paySuccess');
+			  res.render('tunnel/paySuccess',
+			  {
+			  	'step' : 3
+			  });
 		 }
 		 else
 		 {

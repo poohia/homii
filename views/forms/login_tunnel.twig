@@ -1,0 +1,16 @@
+<div class="col-sm-4 col-sm-offset-1">
+    <form id="form_signin" action="/login" method="POST" >
+    	<h3>Vous avez déjà un compte ?</h3>
+    	<input placeholder="mail" id="email" name="email" type="email" required>
+    	<input placeholder="mot de passe *"  id="password" name="password" type="password" required >
+    	
+    	<p>
+          <label for="remember">Se souvenir de moi </label>
+          <input type="checkbox" id="remember" name="remember"/>
+         
+        </p>
+        
+    	<input type="hidden" name="token" />
+    	<button type="submit" class="btn send">se connecter</button>
+	</form>
+</div>

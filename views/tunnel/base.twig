@@ -1,0 +1,50 @@
+{% extends "base/base.twig"  %}
+
+    {% block stylesheet %}
+		 <link rel="stylesheet" href="/css/style_tunnel.css">
+		 <link rel="stylesheet" href="/css/reglement.css">
+	{% endblock stylesheet %}
+
+    {% block header %}
+    	{% include "tunnel/header.twig" %}
+    {% endblock %}
+    
+    {% block main %}
+        <section id="reglement">
+            <div class="row step-row">
+				<div class="col-sm-4 step-arrow">
+				{% if step == 2 %} <a href="/order"> {% endif %}	<span class="step {% if step == 1 %} active {% endif %}">1</span>{% if step == 2 %} </a> {% endif %}
+				</div>
+				<div class="col-sm-4 step-arrow">
+					<span class="step {% if step == 2 %} active {% endif %}">2</span>
+				</div>
+				<div class="col-sm-4">
+					<span class="step {% if step == 3 %} active {% endif %}">3</span>
+				</div>
+				<div class="col-sm-1"></div>			
+			</div>
+			<div class="container">
+			    {% block container_tunnel %}
+			    
+			    {% endblock %}
+			</div>
+        </section>
+        
+    
+    {% endblock %}
+    
+    
+    
+    {% block footer %}
+    	{% include "base/home_footer.twig" %}
+    {% endblock %}
+    
+    {% block javascript %}
+    <script src="/common_modules/validate.module.js"></script>
+     <script src="/forms/validForm.module.js"></script>
+     <script>
+         $(function() {
+            validForm.init();
+        });
+     </script>
+    {% endblock javascript %}

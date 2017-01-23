@@ -20,7 +20,6 @@ module.exports = function(app){
 	// step 1
 	function index(req ,res)
 	{
-		console.log(req.session.cart);
 		if(!req.session.cart)
 		{
 			res.redirect('/market');
@@ -42,11 +41,12 @@ module.exports = function(app){
 	        });
 	    }, function(err, results){
 	    	req.session.redirect = "/order";
-	           res.render("order", {
+	           res.render("tunnel/step1", {
         	        'TVA' : '0.2',
         	        'kits' :  results,
         	        'isUser' : firewall.isUser(req.user.local.role),
-        	        'user' : req.user
+        	        'user' : req.user,
+        	        'step' : 1
 	            });
 		   });
 		}
@@ -67,7 +67,11 @@ module.exports = function(app){
 		else
 		{
 			req.session.redirect = "/order/step/2";
-			res.render('order/step2');
+			res.render('tunnel/step2',
+			 {
+			 	'step' : 2
+			 }
+						);
 		}
 	}
 	function postStep2(req , res)
@@ -82,7 +86,7 @@ module.exports = function(app){
 				code_postal : req.body.code_postal,
 				ville : req.body.ville,
 				pays : req.body.pays,
-				complement : req.body.complement,
+				complement : (req.body.complement) ? req.body.complement : '',
 				
 			},
 			step : 2,
@@ -104,7 +108,6 @@ module.exports = function(app){
 			// calcul le prix
 			function(callback)
 			{
-				
 				async.map(req.session.cart, function(spool, done){
 				  kit.findById(spool.id, function(err, result){
 				  	for(var i = 0 ; i < spool.count ; i++)
@@ -131,8 +134,9 @@ module.exports = function(app){
 		order.findById(req.params.id ,  function(err, result){
 				if(result.user.equals(req.user._id) && result.step === 2)
 				{
-					res.render('order/step3', {
-						'order' : result 
+					res.render('tunnel/step3', {
+						'order' : result,
+						'step'  : 3
 					});
 				}
 				else
@@ -160,7 +164,6 @@ module.exports = function(app){
 	 };
 	 function paySuccess(req, res)
 	 {
-	 	console.log("i'm here");
 	 	req.session.redirect = null;
 	 	req.session.cart = undefined ;
 	 	res.render('paySuccess');

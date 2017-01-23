@@ -1,0 +1,26 @@
+{% extends "tunnel/base.twig" %}
+
+
+{% block container_tunnel %}
+    <div class="row">
+        <div class="col-sm-12 ">
+            <h2>Votre identifiant</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% if isUser == false %}
+            {% include "forms/login_tunnel.twig" %}
+            {% include "forms/inscription_tunnel.twig" %}
+            <br />
+            <div class="col-sm-12">
+               <sup>* Minimum 6 caractères au moins 1  en majuscules, 1  en minuscules et 1 numéro.  </sup>  
+            </div>
+        {% else %}
+        <div class="col-xs-12">
+            <p>Vous êtes conecté en tant que : <b>{{ user.local.email }}</b></p>
+            <a href="/order/step/2">Passer à l'étape suivante</a>
+        </div>
+        {% endif %}
+        
+    </div>
+{% endblock %}

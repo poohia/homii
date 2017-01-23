@@ -126,7 +126,6 @@ router.post('/order/step/2', orderController.postStep2);
 router.get('/order/cancel', orderController.cancelOrder);
 router.get('/order/step/3/:id',orderController.step3);
 router.post('/order/step/3/:id' , orderController.postStep3);
-router.get('/order/payment/success', orderController.paySuccess);
 
 /** paypal **/
 router.post('/paypal/payment', paypalController.pay);

@@ -17,7 +17,7 @@
         <!-- CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-       
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
         
 		{% block stylesheet %}
 		 <link rel="stylesheet" href="/css/style.css">
@@ -33,7 +33,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
     </head>
     
-    <body>
+    <body class="{% block body_class %} {% endblock %}">
         
     {% block header %}
     	{% include "base/landing_header.twig" %}

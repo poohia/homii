@@ -28,12 +28,12 @@
                     <img src="/images/logo-w.png" height="100" alt="logo">
                 </a>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Notre produit</a></li>
+                    <li><a href="/market">Notre produit</a></li>
                     <li><a href="/blog">Blog</a></li>
                     <li><a href="#">Contact & Assistance</a></li>
                 </ul>
                 <div class="nav-right">   
-                    <a class="navbar-brand panier" href="#"></a>
+                    <a class="navbar-brand panier" href="/cart/show" id="cart-link"><span class="badge">{% if sessionCart == true %}1{% endif %}</span></a></a>
                     <a class="navbar-brand compte" href="#"></a>
                 </div>
             </div>

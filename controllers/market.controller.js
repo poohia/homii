@@ -23,7 +23,13 @@ module.exports = function(app){
         }else
         {
         	product.find({}, (err, results) => {
-	        res.render('market', {'kits' : results, 'isAdmin' : firewall.isAdmin(req.user.local.role)});
+	        res.render('market', {'products' : results,
+	        'isAdmin' : firewall.isAdmin(req.user.local.role),
+	        'sessionCart' : (req.session.cart && req.session.cart.length > 0) 	
+	        	
+	        }
+	        
+	        );
 	    });
         }
 	    

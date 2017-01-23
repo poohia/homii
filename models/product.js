@@ -18,7 +18,13 @@ var productSchema = mongoose.Schema({
     name : String,
     description : String,
     image : String,
-    price : String
+    price : Number,
+    price_with_tax : Number,
+    product_type : Number
 });
+
+
+
+
 
 module.exports = mongoose.model('Product', productSchema);

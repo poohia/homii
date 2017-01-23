@@ -86,7 +86,6 @@ var module_validate = function(){
 		}
 		else
 		{
-			console.log("incorrecte");
 			if(req.session.redirect)
 			{
 				res.status(400).redirect(req.session.redirect);

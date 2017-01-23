@@ -44,7 +44,8 @@ module.exports = function(app){
         		res.render('home',{'flashMessage' : req.flash("message"),
 				'error' : req.query.error,
 				'valid' : req.query.valid,
-				'articles' : results
+				'articles' : results,
+				'sessionCart' : (req.session.cart && req.session.cart.length > 0) 
 				});
         	});
         }

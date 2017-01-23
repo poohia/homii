@@ -1,0 +1,104 @@
+#reglement h2 {
+    margin: 80px 0;
+}
+#reglement h3 {
+    margin: 40px 0;
+}
+#reglement {
+    padding: 0;
+}
+#reglement .container {
+    padding-bottom: 80px;
+}
+.step-row {
+    background: #6bdd53;
+    padding: 150px 0;
+}
+
+.step {
+    font-family: "lato";
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 30px;
+    border-radius: 100%;
+    border: 2px #fff solid;
+    text-align: center;
+    font-size: 30px;
+    line-height: 150px;
+    color: #fff;
+}
+.step.active {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #6bdd53;
+}
+.step-arrow {
+    background: url("../images/arrow.png") 100% 30% no-repeat;
+    background-size: 30px;
+}
+
+#reglement input, #reglement textarea {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 50px;
+    color: #888;
+    outline: 0; background: #fff; border: 2px solid #56bf41;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    resize:none;
+}
+p {
+    margin: 30px 0;
+}
+
+.credit-card-min {
+    width: 47%!important;
+    float: left;
+}
+.credit-card-min.cvc {
+    margin-left: 6%!important;
+}
+
+#reglement button.send {
+    border-radius: 0;
+    background: #56bf41;
+}
+/*
+input[type=radio] {
+position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+}
+
+input[type=radio] + label {
+    padding: 0 75px 0 30px;
+    margin: 20px 0;
+    height:18px; 
+    display:inline-block;
+    line-height:18px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=radio]:checked + label {
+    background-position: 0 -18px;
+}*/
+label.css-label {
+    background-image:url("../images/checkbox.png");
+}
+#reglement .radio label
+{
+    margin-left: 19px;
+}
+#reglement .radio input
+{
+    width: inherit;
+    margin: inherit;
+    padding: inherit;
+    margin-left: -30px;
+}

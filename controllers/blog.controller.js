@@ -35,7 +35,8 @@ module.exports = function(app){
 		{
 			res.render("blog/index", {
 			 'recentPosts' :	result[0].recentPost,
-			 'vuePosts'    : result[1].vuePost
+			 'vuePosts'    : result[1].vuePost,
+			 'sessionCart' : (req.session.cart && req.session.cart.length > 0) 
 			});
 		});
 		
@@ -83,7 +84,8 @@ module.exports = function(app){
 					post.find({ $not: { _id : result._id }}, '_id titre_1 image  preview').limit(4).exec( function(err , results){
 						res.render('blog/article', {
 							'article' : result,
-							'other_articles' : results
+							'other_articles' : results,
+							'sessionCart' : (req.session.cart && req.session.cart.length > 0) 
 						});
 					});
 					result.vues += 1;
@@ -101,7 +103,7 @@ module.exports = function(app){
 	{
 		post.find({}, function(err, results){
 			res.render('admin/articles', {
-				'articles' : results	
+				'articles' : results,
 			});
 		})
 	}
@@ -119,7 +121,7 @@ module.exports = function(app){
 		post.findById(req.params.id, function(err, result){
 			res.render('blog/edit',
 			{
-				'article' : result	
+				'article' : result
 			});
 		});
 	}

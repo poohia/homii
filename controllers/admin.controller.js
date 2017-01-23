@@ -110,9 +110,11 @@ module.exports = function(app){
 			{
 				var tmpProduct = new product({
 				   name : req.body.product_name,
-				   description : req.body.product_description,
+			//	   description : req.body.product_description,
 				   image : '/images/products/' + req.files.product_file.name,
-				   price : req.body.product_price
+				   price : req.body.product_price,
+				   price_with_tax : req.body.product_price + 0.7,
+				   product_type : req.body.product_type
 				});
 				tmpProduct.save(callback);
 			},

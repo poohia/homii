@@ -20,16 +20,7 @@ var userSchema = Schema({
         name 		 : {type :String,  unique : true},
         role         : String,
         avatar       : String,
-        sexe         : {
-            type: String,
-            required: 'Bad value',
-            validate: function(value){
-                if(validator.sexe(value))
-                    return true;
-                else
-                  return false;
-            }
-        },
+        sexe         : String,
         cart       :  {type: Schema.Types.ObjectId, ref: 'Cart'},
         orders     : [{type: Schema.Types.ObjectId, ref: 'Order'}]
     },

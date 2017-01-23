@@ -1,0 +1,18 @@
+{% extends "tunnel/base.twig" %}
+
+
+{% block container_tunnel %}
+    <div class="row">
+	        <div class="col-sm-12 ">
+                <h2>Félicitation</h2>
+        		<p>Votre commande a bien été enregistrée,<br> vous recevrez un mail très prochainement</p>
+        		<br><br>
+        		<a href="/home"><button class="btn send">Retour à l'accueil</button></a>
+            </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+ {#  <script src="/js/cart.module.js" type="text/javascript" ></script> #}
+{% endblock javascript %}

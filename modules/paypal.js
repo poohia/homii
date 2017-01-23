@@ -7,6 +7,7 @@
 
 //--------------------------- DEPENDENCYS ----------------------------------------- -------------/
 var Client = require('node-rest-client').Client;
+const util = require('util');
 //----------------------------------------------------------------------------------------------/
 
 //--------------------------- ENTITIES --------------------------------------------------------/
@@ -43,7 +44,7 @@ module.exports = function(app){
         
     }
     
-    function pay(options, callback)
+    function pay(data, callback)
     {
         var args = {
             headers : {
@@ -55,71 +56,13 @@ module.exports = function(app){
                   "payer": {
                   "payment_method": "paypal"
                   },
-                  "transactions": [
-                  {
-                    "amount": {
-                    "total": "2.11",
-                    "currency": "EUR",
-                    "details": {
-                      "subtotal": "2.00",
-                      "tax": "0.07",
-                      "shipping": "0.03",
-                      "handling_fee": "1.00",
-                      "shipping_discount": "-1.00",
-                      "insurance": "0.01"
-                    }
-                    },
-                    "description": "This is the payment transaction description.",
-                    "custom": "EBAY_EMS_90048630024435",
-                    "invoice_number": "48787589673",
-                    "payment_options": {
-                    "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
-                    },
-                    "soft_descriptor": "ECHI5786786",
-                    "item_list": {
-                    "items": [
-                      {
-                      "name": "hat",
-                      "description": "Brown color hat",
-                      "quantity": "1",
-                      "price": "1",
-                      "tax": "0.01",
-                      "sku": "1",
-                      "currency": "EUR"
-                      },
-                      {
-                      "name": "handbag",
-                      "description": "Black color hand bag",
-                      "quantity": "1",
-                      "price": "1",
-                      "tax": "0.02",
-                      "sku": "product34",
-                      "currency": "EUR"
-                      }
-                    ],
-                    "shipping_address": {
-                      "recipient_name": "Hello World",
-                      "line1": "4thFloor",
-                      "line2": "unit#34",
-                      "city": "SAn Jose",
-                      "country_code": "US",
-                      "postal_code": "95131",
-                      "phone": "011862212345678",
-                      "state": "CA"
-                    }
-                    }
-                  }
-                  ],
+                  "transactions": data.transactions,
                   "note_to_payer": "Contact us for any questions on your order.",
-                  "redirect_urls": {
-                  "return_url": "http://www.amazon.com",
-                  "cancel_url": "http://www.hawaii.com"
-                  }
+                  "redirect_urls": data.redirect_urls
                 }
         };
-        console.log(args.headers);
         var client = new Client();
-        client.post(_urls.payment, args, function(data, result){
+       client.post(_urls.payment, args, function(data, result){
            console.log(data);
         });
     }
@@ -136,18 +79,14 @@ module.exports = function(app){
                   "payer": {
                   "payment_method": "paypal"
                   },
-                  "transactions": [
+                   "transactions": [
                   {
                     "amount": {
-                    "total": "2.11",
+                    "total": "149.4",
                     "currency": "EUR",
                     "details": {
-                      "subtotal": "2.00",
-                      "tax": "0.07",
-                      "shipping": "0.03",
-                      "handling_fee": "1.00",
-                      "shipping_discount": "-1.00",
-                      "insurance": "0.01"
+                      "subtotal": "148",
+                      "tax": "1.4",
                     }
                     },
                     "description": "This is the payment transaction description.",
@@ -160,38 +99,28 @@ module.exports = function(app){
                     "item_list": {
                     "items": [
                       {
-                      "name": "hat",
-                      "description": "Brown color hat",
+                      "name": "VERT MALACHITE",
+                      "description": "Stick Homii",
                       "quantity": "1",
-                      "price": "1",
-                      "tax": "0.01",
+                      "price": "49",
+                      "tax": "0.7",
                       "sku": "1",
                       "currency": "EUR"
                       },
                       {
-                      "name": "handbag",
-                      "description": "Black color hand bag",
+                      "name": "BORNE XXV / XXA",
+                      "description": "Borne Homii",
                       "quantity": "1",
-                      "price": "1",
-                      "tax": "0.02",
+                      "price": "99",
+                      "tax": "0.7",
                       "sku": "product34",
                       "currency": "EUR"
                       }
                     ],
-                    "shipping_address": {
-                      "recipient_name": "Hello World",
-                      "line1": "4thFloor",
-                      "line2": "unit#34",
-                      "city": "SAn Jose",
-                      "country_code": "US",
-                      "postal_code": "95131",
-                      "phone": "011862212345678",
-                      "state": "CA"
-                    }
                     }
                   }
                   ],
-                  "note_to_payer": "Contact us for any questions on your order.",
+                  "note_to_payer": "Contact Homii for any questions on your order.",
                   "redirect_urls": {
                   "return_url": return_url,
                   "cancel_url": cancel_url
@@ -199,6 +128,63 @@ module.exports = function(app){
                 }
         };
         //console.log(args.headers);
+        var client = new Client();
+        client.post(_urls.payment, args, function(data, result){
+          console.log(data);
+          console.log(data.links);
+           if(data.links)
+           {
+             callback(data.links[1].href);
+           }
+           else
+           {
+             callback(cancel_url);
+           }
+        });
+    }
+    
+    function payTmp2(data,cancel_url, callback)
+    {
+        
+        var args = {
+            headers : {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + token
+            },
+            data : {
+                  "intent": "sale",
+                  "payer": {
+                  "payment_method": "paypal"
+                  },
+                   "transactions": [
+                  {
+                    "amount": {
+                    "total": data.transactions[0].amount.total,
+                    "currency": "EUR",
+                    "details": {
+                      "subtotal": data.transactions[0].amount.details.subtotal,
+                      "tax": data.transactions[0].amount.details.tax,
+                    }
+                    },
+                    "description": "This is the payment transaction description.",
+                    "custom": "EBAY_EMS_90048630024435",
+                    "invoice_number": "48787589673",
+                    "payment_options": {
+                    "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+                    },
+                    "soft_descriptor": "ECHI5786786",
+                    "item_list": data.transactions[1].item_list,
+                  }
+                  ],
+                  "note_to_payer": "Contact Homii for any questions on your order.",
+                  "redirect_urls": {
+                  "return_url": data.redirect_urls.return_url,
+                  "cancel_url": cancel_url
+                  }
+                }
+        };
+        //console.log(args.headers);
+       // console.log(util.inspect(args.data, {showHidden: false, depth: null}));
         var client = new Client();
         client.post(_urls.payment, args, function(data, result){
            if(data.links)
@@ -212,9 +198,11 @@ module.exports = function(app){
         });
     }
 
+
 	return {
 	    connect : connect,
 	    pay : pay,
-	    payTmp : payTmp
+	    payTmp : payTmp,
+	    payTmp2 : payTmp2
 	}
 }

@@ -28,11 +28,13 @@ module.exports = function(app){
 	     if(isExist.test)
 	     {
 	         req.session.cart.splice(isExist.id, 1);
-	         response.responseJson(res, {"action" : "ok"});
+	      //   response.responseJson(res, {"action" : "ok"});
+	      res.redirect("/cart/show");
 	     }
 	     else
 	     {
-	         response.badRequestJson(res, {"MESSAGE" : "Le kit que vous essayez de supprimer n'est plus dans votre panier"});
+	     	res.status(403).redirect("/cart/show");
+	        // response.badRequestJson(res, {"MESSAGE" : "Le kit que vous essayez de supprimer n'est plus dans votre panier"});
 	     }
 	}
 	

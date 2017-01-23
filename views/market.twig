@@ -1,30 +1,187 @@
 {% extends "base/base_home.twig" %}
 
-{% block header_class %} scroll-nav-bot {% endblock %}
+{% block stylesheet %}
+     <link rel="stylesheet" href="/css/style_home_market.css">
+{% endblock stylesheet %}
 
+    {% block header %}
+    	{% include "base/home_header_black.twig" %}
+    {% endblock %}
+    
+    {% block body_class %}v-nav {% endblock %}
 {% block main  %}
-<h1>Market</h1>
+    <section id="fiche-banner">
 
-{% for kit in kits %}
-<div  class="card col-md-3 col-xs-12">
-  <img src="{{kit.image}}" alt="{{ 'Image du '~kit.name|lower}}" >
-  <div class="card-container">
-    <h4><b>{{kit.name}}</b></h4>
-    <p>{{kit.description}}</p>
-  </div>
-  <div class="btn-group">
-      <a class="btn btn-primary" href="/market/show/product/{{kit._id}}">Voir</a>
-   {% if isAdmin  == false %} <button class="btn btn-danger add-cart" data-href="/cart/add/{{kit._id}}">Ajouter panier</button> {% endif %}
-  </div>
-</div>
-{% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-offre">
+                    <img class="icon-elec" src="images/fiche-kit/icone-prise.png" alt="">
+                    <h1 class="tagline">Le KIT Homii<br>(La borne + le plug)</h1>
+                </div>
+                <div class="col-sm-6 col-offre">
+                    <div class="banner-top ban ban-produit  pro-ban" >
+                        <img class="img-responsive" src="images/fiche-kit/kit-poele.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="/cart/show">Pannier</a>
+    <section id="fiche-kit">
+        <div class="container">
+            <div class="row row-offre">
+                <div class="col-sm-7 col-offre desc-left">
+                    <!-- Description -->
+                    <h3 class="desc-name">Bornes Homii</h3>
+                </div>
+                <div class="col-sm-5 col-offre desc-price">
+                    <p class="from">à partir de <span class="price-from">99€</span></p>
+                    <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h6 class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>incididunt ut labore et dolore magna aliqua.</h6>
+
+                    <!-- Choose plug -->
+                    <h6 class="choose">Choisissez votre puissance</h6>
+                    <div class="row row-offre kit-row">
+                      {% for product in products %}
+                      {% if product.product_type == 1 %}
+                      <div class="col-sm-4 borne-pow col-offre">
+                        <img class="img-responsive img-center img-offre" src="{{product.image}}" alt="">
+                        <h6>{{product.name}}</h6>
+                        <h3>{{product.price}} €</h3>
+                       {#<select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                        </select>#}
+                        
+                        <br>
+                        <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                        </div>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                </div>
+                <button class="btn-green plus">En savoir plus sur le stick</button>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h6 class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>incididunt ut labore et dolore magna aliqua.</h6>
+
+                    <!-- Choose plug -->
+                    <h6 class="choose">Choisissez la couleur du stick</h6>
+                    <div class="row">
+                    {% for product in products %}
+                      {% if product.product_type == 2 %}
+                      <div class="col-sm-4 borne-color">
+                            <img  class="img-responsive img-center"src="{{product.image}}" alt="">
+                            <h6 class="pro-name">{{product.name}}</h6>
+                            <h3>{{product.price }} €</h3>
+                            {#
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>#}
+                            <br>
+                             <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                        </div>
+                      {% endif %}
+                      {% endfor %}
+                     
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn-green plus">En savoir plus sur le stick</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kit-frontier">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h6 class="choose">Homii vous propose aussi le Frontier Stove Anevay</h6>
+                </div>
+                <div class="col-sm-6 col-offre">
+                    <img class="img-responsive img-center" src="images/fiche-kit/frontier.png" alt="">
+                </div>
+                <div class="col-sm-6 col-offre kit-fr">
+                    {% for product in products %}
+                      {% if product.product_type == 3 %}
+                       <h6>{{product.name}}</h6>
+                       <h3>{{ product.price }} €</h3>
+                       <button class="btn-green add-cart" data-href="/cart/add/{{product._id}}">Acheter</button>
+                      {% endif %}
+                      {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="banner-mid">
+        <img class="img-responsive img-center" src="images/fiche-kit/bg-banner-kit.png">
+    </div>
+    <div class="banner-mid-mobile">
+        <img class="img-responsive img-center" src="images/fiche-kit/plug-banner-mob.png">
+        <img class="img-responsive img-center" src="images/fiche-kit/plug-banner-mob2.png">
+    </div> 
+
+    <section id="avantages">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h6 class="choose">Les avantages de la borne thermoélectrique Homii</h6>
+                </div>
+            </div>
+            <div class="row row-offre">
+                <div class="col-sm-4 col-offre">
+                    <img class="img-responsive img-center icon-av" src="images/fiche-kit/generateur.png" alt="">
+                    <h6>Générateur autonome</h6>
+                </div>
+                <div class="col-sm-4 col-offre">
+                    <img class="img-responsive img-center icon-av" src="images/fiche-kit/energie.png" alt="">
+                    <h6>Énergies naturelles</h6>
+                </div>
+                <div class="col-sm-4 col-offre">
+                    <img class="img-responsive img-center icon-av" src="images/fiche-kit/construction.png" alt="">
+                    <h6>Construction équitable</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h6 class="title-hr">
+        Les produits du kit Homii
+    </h6>
+    <section id="other-kit">
+        <div class="container">
+            <div class="row row-offre">
+                <div class="col-sm-6 col-offre other-pro">
+                    <img class="img-responsive img-center img-one" src="images/fiche-kit/bornes.png" alt="">
+                    <h6>La Borne Homii <br>THERMOÉLECTRIQUE</h6>
+                    <h3><span>à partir de </span>99 €</h3>
+                    <button class="btn-green add-cart" data-href="/cart/add/5884c015fa5ea210d6665fef">Acheter</button>
+                </div>
+                <div class="col-sm-6 col-offre other-pro">
+                    <img class="img-responsive img-center img-plug" src="images/fiche-kit/plug1.png" alt="">
+                    <h6>Le stick Homii</h6>
+                    <h3>49 €</h3>
+                    <button class="btn-green add-cart" data-href="/cart/add/5884c602fa5ea210d6665ff5">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock main %}
 
 {% block javascript %}
-    {{ parent() }}
     {#<script src="js/index.module.js" type="text/javascript" ></script> #}
     <script src="/js/cart.module.js" type="text/javascript" ></script> 
+    <script src="/js/steps_market.js" type="text/javascript" ></script> 
 {% endblock javascript %}
 
