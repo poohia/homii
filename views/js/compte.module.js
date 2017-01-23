@@ -2,7 +2,7 @@ var compte = function()
 {
    
    var _selectors = {
-       nav_compte : "a.compte",
+       nav_compte : "#link-compte",
        div_compte : $("#compte-infos")
    }
    
