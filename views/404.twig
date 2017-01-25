@@ -1,5 +1,9 @@
 {% extends "base/base_home.twig" %}
-{% block header_class %} scroll-nav-bot {% endblock %}
+
+    {% block header %}
+    	{% include "base/home_header_black.twig" %}
+    {% endblock %}
+    
 {% block main %}
 <section>
 <h1 style="color: black;">Page introuvable retourner sur la page d'<a href="/home">accueil </a> .</h1>

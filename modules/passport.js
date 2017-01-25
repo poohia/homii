@@ -57,6 +57,8 @@ module.exports = function(passport) {
     function(req, email, password, done) {
 
 
+      
+
 
         
         // asynchronous
@@ -73,7 +75,11 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('message', 'That email is already taken.'));
+                    if(req.body.lastUrl)
+                  {
+                    req.session.redirect = req.body.lastUrl;
+                  }
+                return done(null, false, req.flash('emailUsed', 'Cet email est déjà utilisé.'));
             } else {
                 // if there is no user with that email
                 // create the user
@@ -88,7 +94,7 @@ module.exports = function(passport) {
                 
                 // save the user
                 newUser.save(function(err) {
-                    if (err)
+                   /* if (err)
                         {
                             switch(err.code)
                             {
@@ -98,7 +104,11 @@ module.exports = function(passport) {
                                 default :
                                     return done(null, false, req.flash('message', 'Error 13010 #Somethink broken'));
                             }
-                        }
+                        }*/
+                  if(req.body.lastUrl)
+                  {
+                    req.session.redirect = req.body.lastUrl;
+                  }
                     return done(null, newUser);
                 });
             }
@@ -135,7 +145,7 @@ module.exports = function(passport) {
             // test password
            if(user === null || !hash.validUserPassword(password, user.local.password) )
             {  
-                return done(null, false, req.flash('message', 'You entered an email address/password combination that doesn\'t match.'));
+                return done(null, false, req.flash('connexionEchec', 'Vous avez entré une combinaison adresse e-mail / mot de passe qui ne correspond pas.'));
             }
 
             // all is well, return successful user

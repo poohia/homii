@@ -37,16 +37,23 @@ router.use(function timeLog(req, res, next) {
 //---------- login gestion ------------/
 router.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
+    
     if (err) {
       return next(err);
     }
     if (!user) {
+       if(req.body.lastUrl)
+      {
+        req.session.redirect = req.body.lastUrl;
+        return res.redirect(req.body.lastUrl);
+      }else
       return res.redirect('/');
     }
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
+      
       if (req.body.remember !== undefined) {
         res.cookie('user', user._id + ";" + user.local.password, {
           maxAge: 2592000000,
@@ -54,18 +61,25 @@ router.post('/login', function(req, res, next) {
           httpOnly: true
         }); // Expires in one month
       }
+      if(req.body.lastUrl == "/order")
+      {
+        req.session.redirect = "/order";
+        res.redirect(req.body.lastUrl);
+      }else
       return res.redirect('/home');
     });
   })(req, res, next);
 });
 
 router.post("/logout", function(req, res, next) {
+  	req.session.redirect = null;
   req.logout();
   res.clearCookie("user");
   res.redirect('/home');
 });
 router.get("/logout", function(req, res, next) {
   req.logout();
+  	req.session.redirect = null;
   res.clearCookie("user");
   res.redirect('/home');
 });

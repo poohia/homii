@@ -1,8 +1,8 @@
 {% extends "base/base.twig"  %}
 
     {% block stylesheet %}
-		 <link rel="stylesheet" href="/css/style_tunnel.css">
-		 <link rel="stylesheet" href="/css/reglement.css">
+		 <link rel="stylesheet" href="/css/style_tunnel.min.css">
+		 <link rel="stylesheet" href="/css/reglement.min.css">
 	{% endblock stylesheet %}
 
     {% block header %}
@@ -40,8 +40,8 @@
     {% endblock %}
     
     {% block javascript %}
-    <script src="/common_modules/validate.module.js"></script>
-     <script src="/forms/validForm.module.js"></script>
+    <script src="/common_modules/validate.module.min.js"></script>
+     <script src="/forms/validForm.module.min.js"></script>
      <script>
          $(function() {
             validForm.init();

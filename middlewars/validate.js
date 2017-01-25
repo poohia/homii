@@ -86,7 +86,13 @@ var module_validate = function(){
 		}
 		else
 		{
-			if(req.session.redirect)
+			if(req.body.lastUrl)
+		      {
+		      	 req.flash('valueFail', 'Les valeurs sont incorrectes.')
+		      	res.status(400).redirect(req.body.lastUrl);
+		      	
+		      }
+		    else if(req.session.redirect)
 			{
 				res.status(400).redirect(req.session.redirect);
 			}

@@ -38,10 +38,10 @@
                 
                 <div id="compte-infos" style="display: none;">
                     <p>
-                         <label>Email : </label>   {{ localUser.local.email }}
+                         <label>Email : &nbsp;</label>   {{ localUser.local.email }}
                      </p>
                      <p>
-                         {% if isAdmin == true %} <a href="/admin"><button class="website">Admin</button></a> {% endif %}
+                         {% if isAdmin == true %} <a href="/admin"><button class="website">Admin</button></a><br /><br> {% endif %}
                        <a href="/logout"><button class="website">Déconnexion</button></a>
                      </p>
                     </ul>

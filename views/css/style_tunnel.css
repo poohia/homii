@@ -328,3 +328,14 @@ footer{
     -moz-box-shadow: inset 0px 10px 9px -5px rgba(0,0,0,0.75);
     box-shadow: inset 0px 10px 9px -5px rgba(0,0,0,0.75);
 }
+
+ul.follow-icon
+{
+    list-style: none;
+}
+
+ul.follow-icon img
+{
+    width: 23px;
+    height: auto;
+}

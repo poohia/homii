@@ -122,7 +122,8 @@ module.exports = function(app){
 	function login(req ,res)
 	{
 		//console.log(req.user);
-			res.render('login',{'flashMessage' : req.flash("message")});
+			res.render('login',{        	        'connexionEchec' : req.flash("connexionEchec"),
+        	        'emailUsed' : req.flash("emailUsed"), 'valueFail' :  req.flash("valueFail"), });
 	}
 	
 	

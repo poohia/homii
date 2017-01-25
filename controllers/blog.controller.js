@@ -23,7 +23,7 @@ module.exports = function(app){
 			},
 			function(callback)
 			{
-				post.find({}).sort('vues').exec(function(err, result){
+				post.find({}).sort({'vues' : -1 }).exec(function(err, result){
 					var data = new Object();
 					data.vuePost = result ;
 					callback(err, data);

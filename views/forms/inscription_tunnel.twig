@@ -1,10 +1,21 @@
 <div class="col-sm-4 col-sm-offset-2">
-    <form id="form_signup" action="/signup" method="POST" >
+    <form id="form_signup_tunnel" action="/signup" method="POST" >
     	<h3>Nouveau client ?</h3>
+    	{% if emailUsed.length > 0 %}
+    	<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>{{ emailUsed }}</div>
+    	{% endif %}
+    	    <span class="hidden" id="message-name">Le nom doit être renseigné</span>
     		<input placeholder="nom" type="text" id="name" name="name" autocomplete="off">
-    		<input placeholder="mail"  name="email" type="email">
-    		<input placeholder="mot de passe *"   name="password" type="password" >
+    		<span class="hidden" id="message-email">L'email est incorrecte</span>
+    		<input placeholder="mail" id="email" name="email" type="email">
+    		<span class="hidden" id="message-password">Minimum 6 caractères au moins 1 en majuscules, 1 en minuscules et 1 numéro</span>
+    		<input placeholder="mot de passe *" id="password"  name="password" type="password" >
+    		<span class="hidden" id="message-password2">Les mots de passes ne sont pas identique</span>
     		<input placeholder="confirmer mot de passe *" id="password_again" type="password">
+    		<input type="hidden" name="lastUrl" value="/order">
+    		<input type="hidden" name="token">
     		<button type="submit" class="btn send">créer</button>
 	</form>
 </div>

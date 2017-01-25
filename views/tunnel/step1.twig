@@ -5,6 +5,11 @@
     <div class="row">
         <div class="col-sm-12 ">
             <h2>Votre identifiant</h2>
+                	{% if valueFail.length > 0 %}
+            	<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>{{ valueFail }}</div>
+            	{% endif %}
         </div>
     </div>
     <div class="row">
@@ -17,7 +22,7 @@
             </div>
         {% else %}
         <div class="col-xs-12">
-            <p>Vous êtes conecté en tant que : <b>{{ user.local.email }}</b></p>
+            <p>Vous êtes connecté en tant que : <b>{{ user.local.email }}</b></p>
             <a href="/order/step/2">Passer à l'étape suivante</a><br>
             <a href="/order/cancel">Annuler la commande .</a>
         </div>

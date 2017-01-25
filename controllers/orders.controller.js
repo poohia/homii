@@ -40,13 +40,16 @@ module.exports = function(app){
             done(err, result);
 	        });
 	    }, function(err, results){
-	    	req.session.redirect = "/order";
-	           res.render("tunnel/step1", {
+	    	var isUser = firewall.isUser(req.user.local.role);
+	        res.render("tunnel/step1", {
         	        'TVA' : '0.2',
         	        'kits' :  results,
-        	        'isUser' : firewall.isUser(req.user.local.role),
+        	        'isUser' : isUser,
         	        'user' : req.user,
-        	        'step' : 1
+        	        'step' : 1,
+        	        'connexionEchec' : req.flash("connexionEchec"),
+        	        'emailUsed' : req.flash("emailUsed"), 
+        	        'valueFail' :  req.flash("valueFail"), 
 	            });
 		   });
 		}

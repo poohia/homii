@@ -5,6 +5,7 @@ var validForm = function(){
 		login : '#form_signin',
 		signup : '#form_signup',
 		logout : '#form_logout',
+		signup_tunnel : '#form_signup_tunnel',
 		newsletter : '#form_news_letter',
 		address : '#form_order_address'
 	}
@@ -129,8 +130,7 @@ var validForm = function(){
 	    var isValid = true;
 		
 		var items = {
-			$sexe : $("input[name='sexe']"),
-			$name : $("#name"),
+			$name : $("#message-name"),
 			$last_name : $("#last_name"),
 			$rue  : $("#rue"),
 			$code_postal : $("#code_postal"),
@@ -205,6 +205,65 @@ var validForm = function(){
 		 return (isValid && isToken); 
 		
 	}
+	
+	function signupTunnel()
+	{
+			var isValid = true;
+
+		var spans = {
+		  $name : $("#message-name"),
+	      $email : $("#message-email"),
+	      $password : $("#message-password"),
+	      $password_again : $("#message-password2"),
+	    }
+	    
+		var items = {
+		  $name : $("#name"),
+	      $email : $("#email"),
+	      $password : $("#password"),
+	      $password_again : $("#password_again"),
+	    }
+	    
+		if(validator.password(items.$password.val()))
+		{
+			spans.$password.addClass("hidden");
+		}
+		else
+		{
+			spans.$password.removeClass("hidden");
+		}
+	    if((items.$password_again.val() === items.$password.val()))
+	    {
+	    	spans.$password_again.addClass("hidden");
+	    }
+	    else
+	    {
+	    	spans.$password_again.removeClass("hidden");
+	    	isValid = false;
+	    }
+	    if(validator.email(items.$email.val()))
+	    {
+	    	spans.$email.addClass("hidden");
+	    }
+	    else
+	    {
+	    	spans.$email.removeClass("hidden");
+	    	isValid = false;
+
+	    }
+	    if(validator.no_Empty(items.$name.val()))
+	    {
+	    	spans.$name.addClass("hidden");
+	    }
+	    else
+	    {
+	    	spans.$name.removeClass("hidden");
+	    	isValid = false;
+	    }
+
+        var isToken = token(this);
+	    return (isValid && isToken); 
+	}
 	function token($form)
 	{
 		var $token = $("input[name='token']", $form);
@@ -222,6 +281,7 @@ var validForm = function(){
 		$(_forms.logout).on("submit",logout);
 		$(_forms.newsletter).on("submit", newsLetter);
 		$(_forms.address).on("submit", address);
+		$(_forms.signup_tunnel).on("submit",signupTunnel);
 
 	}
 

@@ -1,17 +1,19 @@
 <form id="form_signin" action="/login" method="POST" >
     <div class="form-group">
         <label for="email">Email* : </label>
-        <input id="email" name="email" type="text" required  class="form-control"/>
+        <input id="email" name="email" type="text" required  class="form-control" required/>
     </div>
     <div class="form-group">
     <label for="password">Mot de passe* <sup>1</sup> : </label>
-    <input id="password" name="password" type="password" required class="form-control" />
+    <input id="password" name="password" type="password" required class="form-control" required/>
    </div>
     <p>
       <label for="remember">Se souvenir de moi</label>
-      <input type="checkbox" id="remember" name="remember" />
+      <input type="checkbox" id="remember" name="remember" required/>
      
    </p>
+   
+      <input type="hidden" name="lastUrl" value="/login">
     <input type="hidden" name="token" />
     <button type="submit" class="website">Connexion</button>
 </form>

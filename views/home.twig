@@ -2,8 +2,8 @@
         
     {% block stylesheet %}
      {{ parent() }}
-     <link rel="stylesheet" href="/css/ion.rangeSlider.css">
-     <link rel="stylesheet" href="/css/ion.rangeSlider.skinFlat.css">
+     <link rel="stylesheet" href="/css/ion.rangeSlider.min.css">
+     <link rel="stylesheet" href="/css/ion.rangeSlider.skinFlat.min.css">
     {% endblock stylesheet %}
     
 
@@ -17,7 +17,7 @@
             <div class="sep"></div>
             <p class="banner-txt">Produisez votre énergie, faites des économies. </p>
             <p class="banner-txt-down">Découvrez notre kit</p>
-            <a href="#description"><img alt="" src="images/down_click.png"></a>
+            <a href="#fullImage"><img alt="" src="images/down_click.png"></a>
         </div>
         <video  autoplay loop muted>
             <source src="videos/landing.mov">
@@ -65,7 +65,7 @@
                         <div class="description">
                           <p> Homii est une borne thermoélectrique basée sur l’effet Peltier.<br> Elle capte l’énergie des sources de chaleur pour
                             la transformer en électricité. Munie d’une à 3 prises, elle alimente vos appareils électriques, qui contribuent à votre confort.</p> 
-                       <a href="#"><button class="website">En savoir plus sur ce produit</button></a>
+                       <a href="/market"><button class="website">En savoir plus sur ce produit</button></a>
                         
                         </div>
                     </div>
@@ -133,11 +133,11 @@
 
     {% block javascript %}
      {{ parent() }}
-         <script src="/js/ion.rangeSlider.js"></script>
-         <script src="/js/main.js"></script>
+         <script src="/js/ion.rangeSlider.min.js"></script>
+         <script src="/js/main.min.js"></script>
          <script>
         $('.carousel').carousel({
-            interval: 5000 //changes the speed
+            interval: 5000 
         })
     
         </script>

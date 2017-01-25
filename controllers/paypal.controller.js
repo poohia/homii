@@ -31,7 +31,7 @@ module.exports = function(app){
             	    paypal.connect(function(){
             	    createDataForPaypal(result, (objectPaypal) => {
             	    	objectPaypal.redirect_urls = new Object() ;
-            	        objectPaypal.redirect_urls.return_url = "https://homii-jordanazoulay.c9users.io/paypal/payment/sucess/" + result.token;
+            	        objectPaypal.redirect_urls.return_url = "https://homii-jordanazoulay.c9users.io/paypal/payment/success/" + result.token;
             	        objectPaypal.redirect_urls.cancel_url = "https://homii-jordanazoulay.c9users.io/paypal/payment/fail/" + result.token;
             	        paypal.payTmp2(objectPaypal, objectPaypal.redirect_urls.cancel_url, (url) => {
             	        		res.redirect(url);
