@@ -24,8 +24,9 @@ module.exports = function(app){
       payment : base_url + "payments/payment"
     };
     
-    var options_auth = { user: "AZT7V0RwrRZQx6N883FzAUNl2EFq62BbeDOjdD7qz8553JCWtNOIn2-6Yw8-FMIlPN3uZVKtNg6NQH6j",
-    password: "EG2SoSyJ20hvP4I0Aav5kMf1Au_e0GTa9Y7ngGMGtRvuliCCxChy0lzt5lJMhuZO4rtxb85floAwQUt-" };
+    // les ids sont changer pour sécu donc paypal ne fonctionne plus
+    var options_auth = { user: "AZT7V0RwrRZQx6N883FzAUNl2EFq62BbeDOjdD7qz8553JCWtNOIn2-6Yw8",
+    password: "EG2SoSyJ20hvP4I0Aav5kMf1Au_e0GTa9Y7ngGMGtRvuliCCxChy0lzt5l" };
 
     function connect(callback)
     {
